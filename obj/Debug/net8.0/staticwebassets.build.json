@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "II+S5wnM7n5ith9sGPWhNZb9HBim+H/D1Jpt6iOUjzo=",
+  "Source": "SWPApp",
+  "BasePath": "_content/SWPApp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "SWPApp\\wwwroot",
+      "Source": "SWPApp",
+      "ContentRoot": "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\wwwroot\\",
+      "BasePath": "_content/SWPApp",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\wwwroot\\index.html",
+      "SourceId": "SWPApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\wwwroot\\",
+      "BasePath": "_content/SWPApp",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ]
+}

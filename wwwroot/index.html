@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWPApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 8px;
+                box-sizing: border-box;
+            }
+
+            .form-group button {
+                padding: 10px 20px;
+                background-color: #28a745;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .form-group button:hover {
+                    background-color: #218838;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Register</h2>
+        <div class="form-group">
+            <label for="register-email">Email:</label>
+            <input type="email" id="register-email" required>
+        </div>
+        <div class="form-group">
+            <label for="register-password">Password:</label>
+            <input type="password" id="register-password" required>
+        </div>
+        <div class="form-group">
+            <label for="register-confirm-password">Confirm Password:</label>
+            <input type="password" id="register-confirm-password" required>
+        </div>
+        <div class="form-group">
+            <button onclick="register()">Register</button>
+        </div>
+        <p id="register-message"></p>
+    </div>
+
+    <div class="form-container">
+        <h2>Login</h2>
+        <div class="form-group">
+            <label for="login-email">Email:</label>
+            <input type="email" id="login-email" required>
+        </div>
+        <div class="form-group">
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" required>
+        </div>
+        <div class="form-group">
+            <label for="login-role">Role:</label>
+            <input type="text" id="login-role">
+        </div>
+        <div class="form-group">
+            <button onclick="login()">Login</button>
+        </div>
+        <p id="login-message"></p>
+    </div>
+
+    <div class="form-container">
+        <h2>Forgot Password</h2>
+        <div class="form-group">
+            <label for="forgot-password-email">Email:</label>
+            <input type="email" id="forgot-password-email" required>
+        </div>
+        <div class="form-group">
+            <button onclick="forgotPassword()">Forgot Password</button>
+        </div>
+        <p id="forgot-password-message"></p>
+    </div>
+
+    <div class="form-container">
+        <h2>Reset Password</h2>
+        <div class="form-group">
+            <label for="reset-token">Token:</label>
+            <input type="text" id="reset-token" required>
+        </div>
+        <div class="form-group">
+            <label for="reset-new-password">New Password:</label>
+            <input type="password" id="reset-new-password" required>
+        </div>
+        <div class="form-group">
+            <label for="reset-confirm-password">Confirm Password:</label>
+            <input type="password" id="reset-confirm-password" required>
+        </div>
+        <div class="form-group">
+            <button onclick="resetPassword()">Reset Password</button>
+        </div>
+        <p id="reset-password-message"></p>
+    </div>
+
+    <div class="form-container">
+        <h2>Confirm Email</h2>
+        <div class="form-group">
+            <label for="confirm-email">Email:</label>
+            <input type="email" id="confirm-email" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm-token">Token:</label>
+            <input type="text" id="confirm-token" required>
+        </div>
+        <div class="form-group">
+            <button onclick="confirmEmail()">Confirm Email</button>
+        </div>
+        <p id="confirm-email-message"></p>
+    </div>
+
+    <script>
+    const baseUrl = 'http://localhost:5000/api/Login';
+
+    async function register() {
+        const email = document.getElementById('register-email').value;
+        const password = document.getElementById('register-password').value;
+        const confirmPassword = document.getElementById('register-confirm-password').value;
+
+        const response = await fetch(`${baseUrl}/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password, confirmPassword })
+        });
+
+        const message = await response.text();
+        document.getElementById('register-message').innerText = message;
+    }
+
+    async function login() {
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        const role = document.getElementById('login-role').value;
+
+        const response = await fetch(`${baseUrl}/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password, role })
+        });
+
+        const message = await response.json();
+        document.getElementById('login-message').innerText = message.Token ? `Login successful. Token: ${message.Token}` : message;
+    }
+
+    async function forgotPassword() {
+        const email = document.getElementById('forgot-password-email').value;
+
+        const response = await fetch(`${baseUrl}/forgot-password`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        });
+
+        const message = await response.text();
+        document.getElementById('forgot-password-message').innerText = message;
+    }
+
+    async function resetPassword() {
+        const token = document.getElementById('reset-token').value;
+        const newPassword = document.getElementById('reset-new-password').value;
+        const confirmPassword = document.getElementById('reset-confirm-password').value;
+
+        const response = await fetch(`${baseUrl}/reset-password`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token, newPassword, confirmPassword })
+        });
+
+        const message = await response.text();
+        document.getElementById('reset-password-message').innerText = message;
+    }
+
+    async function confirmEmail() {
+        const email = document.getElementById('confirm-email').value;
+        const token = document.getElementById('confirm-token').value;
+
+        const response = await fetch(`${baseUrl}/confirm-email?email=${encodeURIComponent(email)}&token=${encodeURIComponent(token)}`);
+
+        const message = await response.text();
+        document.getElementById('confirm-email-message').innerText = message;
+    }
+    </script>
+
+</body>
+</html>
