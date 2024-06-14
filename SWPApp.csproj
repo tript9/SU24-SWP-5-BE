@@ -25,7 +25,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\index.html" />
+    <None Include="wwwroot\homepage.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\CertificatePage\" />
+    <Folder Include="Controllers\ManagerPage\" />
+    <Folder Include="Controllers\.AdminPage\" />
+    <Folder Include="Controllers\InformationPage\" />
+    <Folder Include="Controllers\PaymentPage\" />
+    <Folder Include="Controllers\FeedbackPage\" />
+    <Folder Include="Controllers\ReportPage\" />
+    <Folder Include="Controllers\ServicePage\" />
+    <Folder Include="Controllers\ResultPage%28Client%29\" />
+    <Folder Include="Controllers\ResultPage%28Staff%29\" />
+    <Folder Include="Controllers\ProfilePage\" />
   </ItemGroup>
 
 </Project>

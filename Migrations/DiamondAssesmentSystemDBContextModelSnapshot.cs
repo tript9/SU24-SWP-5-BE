@@ -165,12 +165,6 @@ namespace SWPApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LoginToken")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("LoginTokenExpires")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

@@ -9,11 +9,19 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SWPApp
 build_property.RootNamespace = SWPApp
-build_property.ProjectDir = C:\Users\MSI VN\Desktop\SWP391\SWPApp\
+build_property.ProjectDir = D:\SU24-SWP-5-BE\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\MSI VN\Desktop\SWP391\SWPApp
+build_property.MSBuildProjectDirectory = D:\SU24-SWP-5-BE
 build_property._RazorSourceGeneratorDebug = 
+
+[D:/SU24-SWP-5-BE/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SU24-SWP-5-BE/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 

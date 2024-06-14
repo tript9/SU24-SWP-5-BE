@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\SWPApp.csproj": {}
+    "D:\\SU24-SWP-5-BE\\SWPApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\SWPApp.csproj": {
+    "D:\\SU24-SWP-5-BE\\SWPApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\SWPApp.csproj",
+        "projectUniqueName": "D:\\SU24-SWP-5-BE\\SWPApp.csproj",
         "projectName": "SWPApp",
-        "projectPath": "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\SWPApp.csproj",
+        "projectPath": "D:\\SU24-SWP-5-BE\\SWPApp.csproj",
         "packagesPath": "C:\\Users\\MSI VN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\obj\\",
+        "outputPath": "D:\\SU24-SWP-5-BE\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MSI VN\\AppData\\Roaming\\NuGet\\NuGet.Config",
