@@ -22,9 +22,9 @@ namespace SWPApp.Models
         public string Phone { get; set; }
         public int Role { get; set; }
         public bool Status { get; set; }
-        [NotMapped]
+        
         public string? LoginToken { get; set; }
-        [NotMapped]
+        
         public DateTime? LoginTokenExpires { get; set; }
     }
 

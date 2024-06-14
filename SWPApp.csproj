@@ -39,7 +39,6 @@
     <Folder Include="Controllers\ServicePage\" />
     <Folder Include="Controllers\ResultPage%28Client%29\" />
     <Folder Include="Controllers\ResultPage%28Staff%29\" />
-    <Folder Include="Controllers\ProfilePage\" />
   </ItemGroup>
 
 </Project>

@@ -10,6 +10,13 @@ namespace SWPApp.Controllers.BookingPage
     [ApiController]
     public class BookingController : ControllerBase
     {
+        public class BookingAppointmentModel
+        {
+            public string CustomerName { get; set; }
+            public string PhoneNumber { get; set; }
+            public string IDCard { get; set; }
+            public string Address { get; set; }
+        }
         private readonly DiamondAssesmentSystemDBContext _context;
 
         public BookingController(DiamondAssesmentSystemDBContext context)
@@ -20,36 +27,47 @@ namespace SWPApp.Controllers.BookingPage
         [HttpPost("book-appointment")]
         public async Task<IActionResult> BookAppointment([FromBody] BookingAppointmentModel model)
         {
-            if (!ModelState.IsValid)
+            //Check login or not?
+            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Status == true);
+            if (customer.Status == true)
             {
-                return BadRequest(ModelState);
+
+                // Update customer details
+                customer.CustomerName = model.CustomerName;
+                customer.PhoneNumber = model.PhoneNumber;
+                customer.IDCard = model.IDCard;
+                customer.Address = model.Address;
+
+                // Save changes to the database
+                await _context.SaveChangesAsync();
+
+                return Ok("Booking appointment successful and customer details updated.");
             }
+            else { return Ok("You must login to use this service!!!!"); }
+        }
 
-            // Retrieve the login token from the model
-            var loginToken = model.Token;
-
-            if (string.IsNullOrEmpty(loginToken))
-            {
-                return Unauthorized("Login token is required");
-            }
-
-            // Retrieve the customer by login token
-            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.LoginToken == loginToken && c.LoginTokenExpires > DateTime.UtcNow);
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Status == true);
 
             if (customer == null)
             {
-                return Unauthorized("Invalid or expired login token");
+                return Unauthorized("You must Login");
             }
 
-            // Update customer details
-            customer.PhoneNumber = model.PhoneNumber;
-            customer.IDCard = model.IDCard;
-            customer.Address = model.Address;
+            // Invalidate the login token
+            customer.LoginToken = null;
+            customer.LoginTokenExpires = null;
 
-            // Save changes to the database
+            // Set status to indicate logged out
+            customer.Status = false;
+
+            _context.Customers.Update(customer);
             await _context.SaveChangesAsync();
 
-            return Ok("Booking appointment successful and customer details updated.");
+            return Ok("Logout successful.");
         }
+
     }
 }

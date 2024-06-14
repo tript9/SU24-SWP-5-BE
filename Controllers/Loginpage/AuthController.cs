@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SWPApp.Utils;
 
-namespace SWPApp.Controllers.Homepage
+namespace SWPApp.Controllers.Loginpage
 {
     // Login and Register Models
     public class LoginModel
@@ -50,6 +50,7 @@ namespace SWPApp.Controllers.Homepage
     {
         private readonly DiamondAssesmentSystemDBContext _context;
         private readonly IEmailService _emailService;
+        private readonly ILogger<AuthController> _logger;
 
         public AuthController(DiamondAssesmentSystemDBContext context, IEmailService emailService)
         {
@@ -125,10 +126,10 @@ namespace SWPApp.Controllers.Homepage
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
-            var hashedPassword = loginModel.Password.Trim();
-            var email = loginModel.Email.Trim();
 
-            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Email == email && c.Password == hashedPassword);
+            var email = loginModel.Email;
+
+            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Email == email);
 
             if (customer == null)
             {
@@ -144,21 +145,7 @@ namespace SWPApp.Controllers.Homepage
             // Do not return the login token
             return Ok("Login successful.");
         }
-
-        [HttpPost("logout")]
-        public async Task<IActionResult> Logout()
-        {
-            var email = User.Identity.Name; // Assumes that the email is stored in the User's Identity
-            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Email == email);
-            if (customer.Status = true)
-            {
-                customer.Status = false;
-            }
-            else { return Unauthorized("User not found."); }
-
-            return Ok("Logout successful.");
-        }
-
+        
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordModel model)
         {
@@ -215,6 +202,7 @@ namespace SWPApp.Controllers.Homepage
 
             return Ok("Password reset successful.");
         }
+
         // Token generation method
         private string GenerateToken()
         {

@@ -2,12 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using SWPApp.DTO;
 using SWPApp.Models;
-using SWPApp.Services;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace SWPApp.Controllers
 {
@@ -40,9 +38,8 @@ namespace SWPApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var email = model.Email.Trim().ToLower();
-            var employee = await _context.Employees
-                .FirstOrDefaultAsync(e => e.Email.ToLower() == email && e.Password == model.Password.Trim());
+            var email = model.Email;
+            var employee = await _context.Employees.FirstOrDefaultAsync(e => e.Email.ToLower() == email);
 
             if (employee == null)
             {
@@ -52,25 +49,28 @@ namespace SWPApp.Controllers
             var loginToken = GenerateToken();
             employee.LoginToken = loginToken;
             employee.LoginTokenExpires = DateTime.UtcNow.AddMinutes(30);
+            employee.Status = true; // Set status to indicate logged in
             await _context.SaveChangesAsync();
 
-            return Ok(new { Token = loginToken });
+            return Ok("Login successful");
         }
 
         [HttpPost("logout")]
-        public async Task<IActionResult> Logout([FromBody] LogoutModel model)
+        public async Task<IActionResult> Logout()
         {
-            var employee = await _context.Employees
-                .AsNoTracking()
-                .FirstOrDefaultAsync(e => e.LoginToken == model.Token);
+            var employee = await _context.Employees.FirstOrDefaultAsync(c => c.Status==true);
 
             if (employee == null)
             {
-                return Unauthorized("Invalid token");
+                return Unauthorized("ERROR");
             }
 
+            // Invalidate the login token
             employee.LoginToken = null;
             employee.LoginTokenExpires = null;
+
+            // Set status to indicate logged out
+            employee.Status = false;
 
             _context.Employees.Update(employee);
             await _context.SaveChangesAsync();
@@ -85,9 +85,5 @@ namespace SWPApp.Controllers
         }
     }
 
-    public class LogoutModel
-    {
-        [Required]
-        public string Token { get; set; }
-    }
+   
 }
