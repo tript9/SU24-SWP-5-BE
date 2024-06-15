@@ -52,8 +52,25 @@ namespace SWPApp.Controllers
             employee.Status = true; // Set status to indicate logged in
             await _context.SaveChangesAsync();
 
-            return Ok("Login successful");
+            // Determine the role-specific message
+            string roleSpecificMessage = "";
+            if (employee.Role == 0)
+            {
+                roleSpecificMessage = "Staff login successful";
+            }
+            else if (employee.Role == 1)
+            {
+                roleSpecificMessage = "Manager login successful";
+            }
+            else
+            {
+                // Handle other roles if needed
+                roleSpecificMessage = "Login successful";
+            }
+
+            return Ok(roleSpecificMessage);
         }
+
 
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
