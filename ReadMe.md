@@ -1,4 +1,4 @@
-UPDATE STATUS:14/6/2024 22:24
+UPDATE STATUS:15/6/2024 12:45
 NOTE:
 1.HomePage
 - Login(switch LoginPage)
@@ -20,3 +20,4 @@ NOTE:
 4.ProfilePage(CRUD acc)
 - Update information
 - Logout(sum :employee and customer)
+- 

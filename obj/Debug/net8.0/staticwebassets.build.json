@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LdNMgD5Mjh+1oGXzY2OT5/WSSExfCwlNAExqwCnj/hQ=",
+  "Hash": "/N4YivpXP9RD1OTNoMJmzdB89E9aK5X0C1OT0ZH2W0s=",
   "Source": "SWPApp",
   "BasePath": "_content/SWPApp",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "SWPApp\\wwwroot",
       "Source": "SWPApp",
-      "ContentRoot": "D:\\SU24-SWP-5-BE\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\Game\\SWP\\wwwroot\\",
       "BasePath": "_content/SWPApp",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\SU24-SWP-5-BE\\wwwroot\\homepage.html",
+      "Identity": "C:\\Users\\PC\\Desktop\\Game\\SWP\\wwwroot\\homepage.html",
       "SourceId": "SWPApp",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\SU24-SWP-5-BE\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\Game\\SWP\\wwwroot\\",
       "BasePath": "_content/SWPApp",
       "RelativePath": "homepage.html",
       "AssetKind": "All",

@@ -5,8 +5,9 @@ namespace SWPApp.Models
     // Data/ApplicationDbContext.cs
     public class DiamondAssesmentSystemDBContext : DbContext
     {
-        public DiamondAssesmentSystemDBContext(DbContextOptions<DiamondAssesmentSystemDBContext> options) : 
-            base(options) { }
+        public DiamondAssesmentSystemDBContext(DbContextOptions<DiamondAssesmentSystemDBContext> options) :
+            base(options)
+        { }
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Employee> Employees { get; set; }
@@ -19,6 +20,7 @@ namespace SWPApp.Models
         public DbSet<Certificate> Certificates { get; set; }
         public DbSet<CommitmentRecord> CommitmentRecords { get; set; }
         public DbSet<SealingRecord> SealingRecords { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; } // Add this line
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -60,7 +62,11 @@ namespace SWPApp.Models
                 .HasOne(sd => sd.Service)
                 .WithMany()
                 .HasForeignKey(sd => sd.ServiceId);
+
+            modelBuilder.Entity<Feedback>()
+                .HasOne(f => f.Customer)
+                .WithMany()
+                .HasForeignKey(f => f.CustomerId);
         }
     }
-
 }

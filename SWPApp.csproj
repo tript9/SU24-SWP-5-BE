@@ -33,12 +33,11 @@
     <Folder Include="Controllers\ManagerPage\" />
     <Folder Include="Controllers\.AdminPage\" />
     <Folder Include="Controllers\InformationPage\" />
+    <Folder Include="Controllers\NewFolder\" />
     <Folder Include="Controllers\PaymentPage\" />
     <Folder Include="Controllers\FeedbackPage\" />
     <Folder Include="Controllers\ReportPage\" />
     <Folder Include="Controllers\ServicePage\" />
-    <Folder Include="Controllers\ResultPage%28Client%29\" />
-    <Folder Include="Controllers\ResultPage%28Staff%29\" />
   </ItemGroup>
 
 </Project>
