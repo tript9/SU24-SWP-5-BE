@@ -4646,19 +4646,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PC\\.nuget\\packages\\": {}
+    "C:\\Users\\MSI VN\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC\\Desktop\\Game\\SWP\\SWPApp.csproj",
+      "projectUniqueName": "D:\\SU24-SWP-5-BE\\SWPApp.csproj",
       "projectName": "SWPApp",
-      "projectPath": "C:\\Users\\PC\\Desktop\\Game\\SWP\\SWPApp.csproj",
-      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC\\Desktop\\Game\\SWP\\obj\\",
+      "projectPath": "D:\\SU24-SWP-5-BE\\SWPApp.csproj",
+      "packagesPath": "C:\\Users\\MSI VN\\.nuget\\packages\\",
+      "outputPath": "D:\\SU24-SWP-5-BE\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\MSI VN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -1,42 +1,46 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\PC\\Desktop\\Game\\SWP\\",
+  "WorkspaceRootPath": "D:\\SU24-SWP-5-BE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|c:\\users\\pc\\desktop\\game\\swp\\controllers\\resultpage(client)\\resultclientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\resultpage(client)\\resultclientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\Desktop\\Game\\SWP\\Migrations\\20240615064117_AddFeedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20240615064117_AddFeedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|c:\\users\\pc\\desktop\\game\\swp\\models\\diamondassesmentsystemdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:models\\diamondassesmentsystemdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|c:\\users\\pc\\desktop\\game\\swp\\migrations\\20240615063521_addfeedbacktable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:migrations\\20240615063521_addfeedbacktable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|c:\\users\\pc\\desktop\\game\\swp\\models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|c:\\users\\pc\\desktop\\game\\swp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|c:\\users\\pc\\desktop\\game\\swp\\swpapp.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\controllers\\resultpage(client)\\resultclientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\resultpage(client)\\resultclientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\models\\diamondassesmentsystemdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:models\\diamondassesmentsystemdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\migrations\\20240615063521_addfeedbacktable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:migrations\\20240615063521_addfeedbacktable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\swpapp.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
       "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:swpapp.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|c:\\users\\pc\\desktop\\game\\swp\\controllers\\resultpage(staff)\\resultstaffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\controllers\\resultpage(staff)\\resultstaffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\resultpage(staff)\\resultstaffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|c:\\users\\pc\\desktop\\game\\swp\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
       "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\migrations\\20240615064117_addfeedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:migrations\\20240615064117_addfeedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -49,40 +53,55 @@
           "SelectedChildIndex": 6,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "20240615064117_AddFeedback.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Game\\SWP\\Migrations\\20240615064117_AddFeedback.cs",
-              "RelativeDocumentMoniker": "Migrations\\20240615064117_AddFeedback.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\Game\\SWP\\Migrations\\20240615064117_AddFeedback.cs",
-              "RelativeToolTip": "Migrations\\20240615064117_AddFeedback.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\EmployeeController.cs",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "Controllers\\EmployeeController.cs",
+              "ViewState": "AQIAAF8AAAAAAAAAAAAswGsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T06:41:17.383Z",
+              "WhenOpened": "2024-06-16T11:06:01.051Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "20240615063521_AddFeedbackTable.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Game\\SWP\\Migrations\\20240615063521_AddFeedbackTable.cs",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Migrations\\20240615063521_AddFeedbackTable.cs",
               "RelativeDocumentMoniker": "Migrations\\20240615063521_AddFeedbackTable.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\Game\\SWP\\Migrations\\20240615063521_AddFeedbackTable.cs",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\Migrations\\20240615063521_AddFeedbackTable.cs",
               "RelativeToolTip": "Migrations\\20240615063521_AddFeedbackTable.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T06:35:22.147Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-15T06:35:22.147Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Game\\SWP\\appsettings.json",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\Game\\SWP\\appsettings.json",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-06-15T06:18:13.184Z",
               "EditorCaption": ""
@@ -91,79 +110,86 @@
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "SWPApp.http",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Game\\SWP\\SWPApp.http",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\SWPApp.http",
               "RelativeDocumentMoniker": "SWPApp.http",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\Game\\SWP\\SWPApp.http",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\SWPApp.http",
               "RelativeToolTip": "SWPApp.http",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2024-06-15T06:18:12.261Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-15T06:18:12.261Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DiamondAssesmentSystemDBContext.cs",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Models\\DiamondAssesmentSystemDBContext.cs",
+              "RelativeDocumentMoniker": "Models\\DiamondAssesmentSystemDBContext.cs",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\Models\\DiamondAssesmentSystemDBContext.cs",
+              "RelativeToolTip": "Models\\DiamondAssesmentSystemDBContext.cs",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAUwEQAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T06:10:15.271Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FeedBack.cs",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Models\\FeedBack.cs",
+              "RelativeDocumentMoniker": "Models\\FeedBack.cs",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\Models\\FeedBack.cs",
+              "RelativeToolTip": "Models\\FeedBack.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T06:07:45.869Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "DiamondAssesmentSystemDBContext.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Game\\SWP\\Models\\DiamondAssesmentSystemDBContext.cs",
-              "RelativeDocumentMoniker": "Models\\DiamondAssesmentSystemDBContext.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\Game\\SWP\\Models\\DiamondAssesmentSystemDBContext.cs",
-              "RelativeToolTip": "Models\\DiamondAssesmentSystemDBContext.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAUwEQAAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T06:10:15.271Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FeedBack.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Game\\SWP\\Models\\FeedBack.cs",
-              "RelativeDocumentMoniker": "Models\\FeedBack.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\Game\\SWP\\Models\\FeedBack.cs",
-              "RelativeToolTip": "Models\\FeedBack.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T06:07:45.869Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "ResultClientController.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Game\\SWP\\Controllers\\ResultPage(Client)\\ResultClientController.cs",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\ResultPage(Client)\\ResultClientController.cs",
               "RelativeDocumentMoniker": "Controllers\\ResultPage(Client)\\ResultClientController.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\Game\\SWP\\Controllers\\ResultPage(Client)\\ResultClientController.cs",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\Controllers\\ResultPage(Client)\\ResultClientController.cs",
               "RelativeToolTip": "Controllers\\ResultPage(Client)\\ResultClientController.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAQwEUAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-15T06:06:29.67Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "20240615064117_AddFeedback.cs",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Migrations\\20240615064117_AddFeedback.cs",
+              "RelativeDocumentMoniker": "Migrations\\20240615064117_AddFeedback.cs",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\Migrations\\20240615064117_AddFeedback.cs",
+              "RelativeToolTip": "Migrations\\20240615064117_AddFeedback.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T06:41:17.383Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 7,
               "Title": "ResultStaffController.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Game\\SWP\\Controllers\\resultpage(staff)\\ResultStaffController.cs",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\resultpage(staff)\\ResultStaffController.cs",
               "RelativeDocumentMoniker": "Controllers\\resultpage(staff)\\ResultStaffController.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\Game\\SWP\\Controllers\\resultpage(staff)\\ResultStaffController.cs",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\Controllers\\resultpage(staff)\\ResultStaffController.cs",
               "RelativeToolTip": "Controllers\\resultpage(staff)\\ResultStaffController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T05:59:59.027Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-15T05:59:59.027Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
               "Title": "ReadMe.md",
-              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Game\\SWP\\ReadMe.md",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\ReadMe.md",
               "RelativeDocumentMoniker": "ReadMe.md",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\Game\\SWP\\ReadMe.md",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\ReadMe.md",
               "RelativeToolTip": "ReadMe.md",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2024-06-14T15:23:32.71Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-14T15:23:32.71Z"
             }
           ]
         }
