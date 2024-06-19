@@ -76,7 +76,6 @@ namespace SWPApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConfirmationToken")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ConfirmationTokenExpires")

@@ -25,28 +25,18 @@ namespace SWPApp.Models
 
         public bool Status { get; set; }
 
-   
         public string? ResetToken { get; set; }
 
-       
         public DateTime? ResetTokenExpires { get; set; }
 
-      
         public string? LoginToken { get; set; }
 
-      
         public DateTime? LoginTokenExpires { get; set; }
 
-       
         public bool EmailConfirmed { get; set; }
 
-        [Required]
-        
-        public string ConfirmationToken { get; set; }
+        public string? ConfirmationToken { get; set; } // Make ConfirmationToken nullable
 
-        
         public DateTime? ConfirmationTokenExpires { get; set; }
     }
-
-
 }

@@ -41,8 +41,11 @@ namespace SWPApp.Controllers.Loginpage
         public string ConfirmPassword { get; set; }
     }
 
-
-
+    public class ConfirmEmailModel
+    {
+        [Required]
+        public string ConfirmationCode { get; set; }
+    }
 
     [Route("api/[controller]")]
     [ApiController]
@@ -85,32 +88,26 @@ namespace SWPApp.Controllers.Loginpage
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
 
-            // Generate confirmation link
-            var confirmationLink = Url.Action("ConfirmEmail", "Customer", new { code = confirmationCode }, Request.Scheme);
-            var confirmUrl = $"https://localhost:44370/swagger/index.html?code={confirmationCode}";
-
-            // Send confirmation email with the link
-            var emailContent = $"<p>Please confirm your email by clicking <a href=\"{confirmUrl}\">here</a>.</p>";
+            // Send confirmation email with the code
+            var emailContent = $"<p>Your confirmation code is: <strong>{confirmationCode}</strong>.</p>";
             await _emailService.SendEmailAsync(model.Email, "Email Confirmation", emailContent);
-            //set status=1 as login successfull
-            customer.Status = true; // Set status to 1 after successful registration
-            await _context.SaveChangesAsync();
-            return Ok("Please check your email to confirm your registration.");
+
+            return Ok("Please check your email for the confirmation code.");
         }
 
-        [HttpGet("confirm-email")]
-        public async Task<IActionResult> ConfirmEmail(string code)
+        [HttpPost("confirm-email")]
+        public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmEmailModel model)
         {
-            if (string.IsNullOrWhiteSpace(code))
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Invalid confirmation link.");
+                return BadRequest(ModelState);
             }
 
-            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.ConfirmationToken == code);
+            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.ConfirmationToken == model.ConfirmationCode);
 
             if (customer == null || customer.ConfirmationTokenExpires < DateTime.UtcNow)
             {
-                return BadRequest("Invalid or expired confirmation link.");
+                return BadRequest("Invalid or expired confirmation code.");
             }
 
             customer.EmailConfirmed = true;
@@ -118,17 +115,27 @@ namespace SWPApp.Controllers.Loginpage
             customer.ConfirmationTokenExpires = null;
             customer.Status = true; // Email confirmed
 
-            await _context.SaveChangesAsync();
+            var loginToken = GenerateToken();
+            customer.LoginToken = loginToken;
+            customer.LoginTokenExpires = DateTime.UtcNow.AddMinutes(30);
 
-            return Ok("Email confirmed successfully.");
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, "An error occurred while updating the customer.");
+                return StatusCode(500, "An error occurred while confirming the email.");
+            }
+
+            return Ok(new { Message = "Email confirmed successfully. You are now logged in.", LoginToken = loginToken });
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
-
             var email = loginModel.Email;
-
             var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Email == email);
 
             if (customer == null)
@@ -142,10 +149,10 @@ namespace SWPApp.Controllers.Loginpage
             customer.Status = true; // Login successful, set status to 1
             await _context.SaveChangesAsync();
 
-            // Do not return the login token
-            return Ok("Login successful.");
+            // Return the login token
+            return Ok(new { Message = "Login successful.", LoginToken = loginToken });
         }
-        
+
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordModel model)
         {
@@ -173,8 +180,6 @@ namespace SWPApp.Controllers.Loginpage
 
             return Ok("Password reset code has been sent to your email.");
         }
-
-
 
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel model)
@@ -226,6 +231,5 @@ namespace SWPApp.Controllers.Loginpage
             return new string(Enumerable.Repeat(chars, 6)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-
     }
 }

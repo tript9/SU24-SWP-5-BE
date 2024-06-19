@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "D:\\SU24-SWP-5-BE\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\controllers\\loginpage\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\loginpage\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\controllers\\homepage\\logoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\homepage\\logoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\controllers\\bookingpage\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\bookingpage\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
@@ -17,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\models\\diamondassesmentsystemdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:models\\diamondassesmentsystemdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\migrations\\20240615063521_addfeedbacktable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:migrations\\20240615063521_addfeedbacktable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -71,6 +83,58 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "LogoutController.cs",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\Homepage\\LogoutController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Homepage\\LogoutController.cs",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\Controllers\\Homepage\\LogoutController.cs",
+              "RelativeToolTip": "Controllers\\Homepage\\LogoutController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAACYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-19T08:40:45.785Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BookingController.cs",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\BookingPage\\BookingController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BookingPage\\BookingController.cs",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\Controllers\\BookingPage\\BookingController.cs",
+              "RelativeToolTip": "Controllers\\BookingPage\\BookingController.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAAAwEkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-19T08:20:17.339Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Models\\Customer.cs",
+              "RelativeDocumentMoniker": "Models\\Customer.cs",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\Models\\Customer.cs",
+              "RelativeToolTip": "Models\\Customer.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAowCoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-19T08:09:01.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\Loginpage\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Loginpage\\AuthController.cs",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\Controllers\\Loginpage\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\Loginpage\\AuthController.cs",
+              "ViewState": "AQIAAJEAAAAAAAAAAAAiwOsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-19T07:40:48.911Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "EmployeeController.cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\EmployeeController.cs",
               "RelativeDocumentMoniker": "Controllers\\EmployeeController.cs",
@@ -78,37 +142,24 @@
               "RelativeToolTip": "Controllers\\EmployeeController.cs",
               "ViewState": "AQIAAF8AAAAAAAAAAAAswGsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-16T11:06:01.051Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-16T11:06:01.051Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "20240615063521_AddFeedbackTable.cs",
-              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Migrations\\20240615063521_AddFeedbackTable.cs",
-              "RelativeDocumentMoniker": "Migrations\\20240615063521_AddFeedbackTable.cs",
-              "ToolTip": "D:\\SU24-SWP-5-BE\\Migrations\\20240615063521_AddFeedbackTable.cs",
-              "RelativeToolTip": "Migrations\\20240615063521_AddFeedbackTable.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T06:35:22.147Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
               "ToolTip": "D:\\SU24-SWP-5-BE\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAxAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-06-15T06:18:13.184Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "SWPApp.http",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\SWPApp.http",
               "RelativeDocumentMoniker": "SWPApp.http",
@@ -120,7 +171,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "DiamondAssesmentSystemDBContext.cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Models\\DiamondAssesmentSystemDBContext.cs",
               "RelativeDocumentMoniker": "Models\\DiamondAssesmentSystemDBContext.cs",
@@ -132,7 +183,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "FeedBack.cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Models\\FeedBack.cs",
               "RelativeDocumentMoniker": "Models\\FeedBack.cs",
@@ -144,7 +195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "ResultClientController.cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\ResultPage(Client)\\ResultClientController.cs",
               "RelativeDocumentMoniker": "Controllers\\ResultPage(Client)\\ResultClientController.cs",
@@ -152,12 +203,11 @@
               "RelativeToolTip": "Controllers\\ResultPage(Client)\\ResultClientController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAEUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T06:06:29.67Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-15T06:06:29.67Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "20240615064117_AddFeedback.cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Migrations\\20240615064117_AddFeedback.cs",
               "RelativeDocumentMoniker": "Migrations\\20240615064117_AddFeedback.cs",
@@ -169,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "ResultStaffController.cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\resultpage(staff)\\ResultStaffController.cs",
               "RelativeDocumentMoniker": "Controllers\\resultpage(staff)\\ResultStaffController.cs",
@@ -181,7 +231,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "ReadMe.md",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\ReadMe.md",
               "RelativeDocumentMoniker": "ReadMe.md",

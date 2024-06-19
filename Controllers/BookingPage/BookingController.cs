@@ -17,6 +17,7 @@ namespace SWPApp.Controllers.BookingPage
             public string IDCard { get; set; }
             public string Address { get; set; }
         }
+
         private readonly DiamondAssesmentSystemDBContext _context;
 
         public BookingController(DiamondAssesmentSystemDBContext context)
@@ -27,11 +28,10 @@ namespace SWPApp.Controllers.BookingPage
         [HttpPost("book-appointment")]
         public async Task<IActionResult> BookAppointment([FromBody] BookingAppointmentModel model)
         {
-            //Check login or not?
-            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Status == true);
-            if (customer.Status == true)
+            // Check login or not
+            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Status == true && c.LoginToken != null);
+            if (customer != null)
             {
-
                 // Update customer details
                 customer.CustomerName = model.CustomerName;
                 customer.PhoneNumber = model.PhoneNumber;
@@ -43,17 +43,20 @@ namespace SWPApp.Controllers.BookingPage
 
                 return Ok("Booking appointment successful and customer details updated.");
             }
-            else { return Ok("You must login to use this service!!!!"); }
+            else
+            {
+                return Unauthorized("You must login to use this service.");
+            }
         }
 
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
-            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Status == true);
+            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Status == true && c.LoginToken != null);
 
             if (customer == null)
             {
-                return Unauthorized("You must Login");
+                return Unauthorized("You must login.");
             }
 
             // Invalidate the login token

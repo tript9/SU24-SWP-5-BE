@@ -17,11 +17,11 @@ namespace SWPApp.Controllers.Homepage
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
-            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Status==true);
+            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Status == true && c.LoginToken != null);
 
             if (customer == null)
             {
-                return Unauthorized("You must Login");
+                return Unauthorized("You must login.");
             }
 
             // Invalidate the login token
@@ -36,5 +36,6 @@ namespace SWPApp.Controllers.Homepage
 
             return Ok("Logout successful.");
         }
+
     }
 }
