@@ -10,6 +10,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using SWPApp.Utils;
+using BCrypt; // Ensure this is referencing the correct BCrypt package
+
 
 namespace SWPApp.Controllers.Loginpage
 {
@@ -55,11 +57,13 @@ namespace SWPApp.Controllers.Loginpage
         private readonly IEmailService _emailService;
         private readonly ILogger<AuthController> _logger;
 
-        public AuthController(DiamondAssesmentSystemDBContext context, IEmailService emailService)
+        public AuthController(DiamondAssesmentSystemDBContext context, IEmailService emailService, ILogger<AuthController> logger)
         {
             _context = context;
             _emailService = emailService;
+            _logger = logger;
         }
+
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
@@ -75,11 +79,12 @@ namespace SWPApp.Controllers.Loginpage
                 return BadRequest("Email is already registered");
             }
 
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
             var confirmationCode = GenerateConfirmationCode();
             var customer = new Customer
             {
                 Email = email,
-                Password = model.Password,
+                Password = hashedPassword,
                 Status = false, // Initially not confirmed
                 ConfirmationToken = confirmationCode,
                 ConfirmationTokenExpires = DateTime.UtcNow.AddDays(1) // Code expires in 1 day
@@ -138,7 +143,7 @@ namespace SWPApp.Controllers.Loginpage
             var email = loginModel.Email;
             var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Email == email);
 
-            if (customer == null)
+            if (customer == null || !BCrypt.Net.BCrypt.Verify(loginModel.Password, customer.Password))
             {
                 return Unauthorized("Invalid email or password");
             }
@@ -200,7 +205,7 @@ namespace SWPApp.Controllers.Loginpage
                 return BadRequest("Passwords do not match.");
             }
 
-            customer.Password = model.NewPassword;
+            customer.Password = BCrypt.Net.BCrypt.HashPassword(model.NewPassword);
             customer.ResetToken = null; // Invalidate the token
             customer.ResetTokenExpires = null; // Invalidate the token expiration
             await _context.SaveChangesAsync();

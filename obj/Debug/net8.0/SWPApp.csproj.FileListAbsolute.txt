@@ -155,7 +155,6 @@ D:\SU24-SWP-5-BE\bin\Debug\net8.0\SWPApp.dll
 D:\SU24-SWP-5-BE\bin\Debug\net8.0\SWPApp.pdb
 D:\SU24-SWP-5-BE\bin\Debug\net8.0\Azure.Core.dll
 D:\SU24-SWP-5-BE\bin\Debug\net8.0\Azure.Identity.dll
-D:\SU24-SWP-5-BE\bin\Debug\net8.0\BCrypt.Net.dll
 D:\SU24-SWP-5-BE\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
 D:\SU24-SWP-5-BE\bin\Debug\net8.0\Humanizer.dll
 D:\SU24-SWP-5-BE\bin\Debug\net8.0\MailKit.dll
@@ -443,3 +442,4 @@ C:\Users\PC\Desktop\Game\SWP\obj\Debug\net8.0\refint\SWPApp.dll
 C:\Users\PC\Desktop\Game\SWP\obj\Debug\net8.0\SWPApp.pdb
 C:\Users\PC\Desktop\Game\SWP\obj\Debug\net8.0\SWPApp.genruntimeconfig.cache
 C:\Users\PC\Desktop\Game\SWP\obj\Debug\net8.0\ref\SWPApp.dll
+D:\SU24-SWP-5-BE\bin\Debug\net8.0\BCrypt.Net-Next.dll

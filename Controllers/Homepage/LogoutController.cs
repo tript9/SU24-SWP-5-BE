@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SWPApp.Controllers.Loginpage;
 using SWPApp.Models;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace SWPApp.Controllers.Homepage
 {
@@ -12,7 +14,14 @@ namespace SWPApp.Controllers.Homepage
     {
         private readonly DiamondAssesmentSystemDBContext _context;
         private readonly IEmailService _emailService;
-        private readonly ILogger<AuthController> _logger;
+        private readonly ILogger<LogoutController> _logger;
+
+        public LogoutController(DiamondAssesmentSystemDBContext context, IEmailService emailService, ILogger<LogoutController> logger)
+        {
+            _context = context;
+            _emailService = emailService;
+            _logger = logger;
+        }
 
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
@@ -36,6 +45,5 @@ namespace SWPApp.Controllers.Homepage
 
             return Ok("Logout successful.");
         }
-
     }
 }

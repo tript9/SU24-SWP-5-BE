@@ -28,15 +28,6 @@ namespace SWPApp.DTO
         [Compare("NewPassword", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
-    public class ConfirmEmailModel
-    {
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
-
-        [Required]
-        public string ConfirmationCode { get; set; }
-    }
 }
 
 
