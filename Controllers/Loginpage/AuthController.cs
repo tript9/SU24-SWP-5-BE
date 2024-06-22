@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using SWPApp.Utils;
 using BCrypt; // Ensure this is referencing the correct BCrypt package
 
-
 namespace SWPApp.Controllers.Loginpage
 {
     // Login and Register Models
@@ -30,12 +29,13 @@ namespace SWPApp.Controllers.Loginpage
     public class RegisterModel
     {
         [Required]
+        public string? CustomerName { get; set; }
+
+        [Required]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
-        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
-            ErrorMessage = "Password must be at least 8 characters long and contain at least one number and one special character.")]
+        [Required]        
         public string Password { get; set; }
 
         [Required]
@@ -47,6 +47,10 @@ namespace SWPApp.Controllers.Loginpage
     {
         [Required]
         public string ConfirmationCode { get; set; }
+
+        // Add the other details for saving after confirmation
+       
+       
     }
 
     [Route("api/[controller]")]
@@ -63,7 +67,6 @@ namespace SWPApp.Controllers.Loginpage
             _emailService = emailService;
             _logger = logger;
         }
-
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
@@ -115,6 +118,7 @@ namespace SWPApp.Controllers.Loginpage
                 return BadRequest("Invalid or expired confirmation code.");
             }
 
+            // Save additional information after confirmation            
             customer.EmailConfirmed = true;
             customer.ConfirmationToken = null;
             customer.ConfirmationTokenExpires = null;
@@ -126,7 +130,7 @@ namespace SWPApp.Controllers.Loginpage
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(); // Save changes to the database
             }
             catch (DbUpdateException ex)
             {
