@@ -10,9 +10,10 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using SWPApp.Utils;
-using BCrypt; // Ensure this is referencing the correct BCrypt package
+using BCrypt;
+using Azure.Messaging;
 
-namespace SWPApp.Controllers.Loginpage
+namespace SWPApp.Controllers
 {
     // Login and Register Models
     public class LoginModel
@@ -35,7 +36,8 @@ namespace SWPApp.Controllers.Loginpage
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]        
+        [Required]
+        [MinLength(8, ErrorMessage = "The password must be at least 8 characters long.")]
         public string Password { get; set; }
 
         [Required]
@@ -47,10 +49,6 @@ namespace SWPApp.Controllers.Loginpage
     {
         [Required]
         public string ConfirmationCode { get; set; }
-
-        // Add the other details for saving after confirmation
-       
-       
     }
 
     [Route("api/[controller]")]
@@ -86,6 +84,7 @@ namespace SWPApp.Controllers.Loginpage
             var confirmationCode = GenerateConfirmationCode();
             var customer = new Customer
             {
+                CustomerName = model.CustomerName, // Add CustomerName here
                 Email = email,
                 Password = hashedPassword,
                 Status = false, // Initially not confirmed
@@ -118,7 +117,6 @@ namespace SWPApp.Controllers.Loginpage
                 return BadRequest("Invalid or expired confirmation code.");
             }
 
-            // Save additional information after confirmation            
             customer.EmailConfirmed = true;
             customer.ConfirmationToken = null;
             customer.ConfirmationTokenExpires = null;
@@ -130,7 +128,7 @@ namespace SWPApp.Controllers.Loginpage
 
             try
             {
-                await _context.SaveChangesAsync(); // Save changes to the database
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateException ex)
             {
@@ -138,28 +136,58 @@ namespace SWPApp.Controllers.Loginpage
                 return StatusCode(500, "An error occurred while confirming the email.");
             }
 
-            return Ok(new { Message = "Email confirmed successfully. You are now logged in.", LoginToken = loginToken });
+            return Ok(new
+            {
+                Message = "Email confirmed successfully. You are now logged in.",
+                LoginToken = loginToken,
+                CustomerName = customer.CustomerName
+            });
         }
+
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
-            var email = loginModel.Email;
+            var email = loginModel.Email.ToLower();
             var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Email == email);
+            var employee = await _context.Employees.FirstOrDefaultAsync(e => e.Email.ToLower() == email);
 
-            if (customer == null || !BCrypt.Net.BCrypt.Verify(loginModel.Password, customer.Password))
+            if (customer == null && employee == null)
             {
                 return Unauthorized("Invalid email or password");
             }
 
-            var loginToken = GenerateToken();
-            customer.LoginToken = loginToken;
-            customer.LoginTokenExpires = DateTime.UtcNow.AddMinutes(30);
-            customer.Status = true; // Login successful, set status to 1
-            await _context.SaveChangesAsync();
+            if (customer != null && BCrypt.Net.BCrypt.Verify(loginModel.Password, customer.Password))
+            {
+                var loginToken = GenerateToken();
+                customer.LoginToken = loginToken;
+                customer.LoginTokenExpires = DateTime.UtcNow.AddMinutes(30);
+                customer.Status = true; // Login successful, set status to true
+                await _context.SaveChangesAsync();
 
-            // Return the login token
-            return Ok(new { Message = "Login successful.", LoginToken = loginToken });
+                return Ok(new { Message = "Customer login successful.", LoginToken = loginToken, Role = (int?)null, customerName = customer.CustomerName });
+            }
+
+            if (employee != null)
+            {
+                var loginToken = GenerateToken();
+                employee.LoginToken = loginToken;
+                employee.LoginTokenExpires = DateTime.UtcNow.AddMinutes(30);
+                employee.Status = true; // Login successful, set status to true
+                await _context.SaveChangesAsync();
+
+                // Determine the role-specific message
+                string roleSpecificMessage = employee.Role switch
+                {
+                    0 => "Staff login successful",
+                    1 => "Admin login successful",
+                    _ => "Login successful"
+                };
+
+                return Ok(new { Message = roleSpecificMessage, LoginToken = loginToken, employee.Role, });      
+            }
+
+            return Unauthorized("Invalid email or password");
         }
 
         [HttpPost("forgot-password")]
@@ -214,8 +242,9 @@ namespace SWPApp.Controllers.Loginpage
             customer.ResetTokenExpires = null; // Invalidate the token expiration
             await _context.SaveChangesAsync();
 
-            return Ok("Password reset successful.");
+            return Ok(new { message = "Password reset successful.", customerName = customer.CustomerName });
         }
+
 
         // Token generation method
         private string GenerateToken()

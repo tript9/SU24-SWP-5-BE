@@ -4669,11 +4669,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SU24-SWP-5-BE\\SWPApp.csproj",
+      "projectUniqueName": "D:\\PROJECT-TEST\\SWPApp.csproj",
       "projectName": "SWPApp",
-      "projectPath": "D:\\SU24-SWP-5-BE\\SWPApp.csproj",
+      "projectPath": "D:\\PROJECT-TEST\\SWPApp.csproj",
       "packagesPath": "C:\\Users\\MSI VN\\.nuget\\packages\\",
-      "outputPath": "D:\\SU24-SWP-5-BE\\obj\\",
+      "outputPath": "D:\\PROJECT-TEST\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\MSI VN\\AppData\\Roaming\\NuGet\\NuGet.Config",

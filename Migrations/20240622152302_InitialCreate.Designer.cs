@@ -12,8 +12,8 @@ using SWPApp.Models;
 namespace SWPApp.Migrations
 {
     [DbContext(typeof(DiamondAssesmentSystemDBContext))]
-    [Migration("20240619081035_MakeConfirmationTokenNullable")]
-    partial class MakeConfirmationTokenNullable
+    [Migration("20240622152302_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -272,9 +272,8 @@ namespace SWPApp.Migrations
                     b.Property<int>("PaymentMethod")
                         .HasColumnType("int");
 
-                    b.Property<string>("PaymentStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("PaymentStatus")
+                        .HasColumnType("bit");
 
                     b.HasKey("RequestId", "ServiceId");
 

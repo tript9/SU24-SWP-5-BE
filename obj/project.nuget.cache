@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NH8Q54VbAow=",
+  "dgSpecHash": "Q+gDu7W2t34=",
   "success": true,
-  "projectFilePath": "D:\\SU24-SWP-5-BE\\SWPApp.csproj",
+  "projectFilePath": "D:\\PROJECT-TEST\\SWPApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MSI VN\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\MSI VN\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

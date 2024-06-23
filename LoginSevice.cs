@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using SWPApp.Controllers.Loginpage;
+using SWPApp.Controllers;
 using SWPApp.Models;
 
 public class CustomerService
