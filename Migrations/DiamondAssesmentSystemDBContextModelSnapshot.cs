@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SWPApp.Models;
 
 #nullable disable
 
@@ -121,33 +120,6 @@ namespace SWPApp.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("SWPApp.Models.Diamond", b =>
-                {
-                    b.Property<int>("DiamondId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DiamondId"));
-
-                    b.Property<decimal>("CaratWeight")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Shape")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.HasKey("DiamondId");
-
-                    b.ToTable("Diamonds");
-                });
-
             modelBuilder.Entity("SWPApp.Models.Employee", b =>
                 {
                     b.Property<int>("EmployeeId")
@@ -224,14 +196,21 @@ namespace SWPApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RequestId"));
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DiamondId")
-                        .HasColumnType("int");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
+                    b.Property<string>("IDCard")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("RequestDate")
                         .HasColumnType("datetime2");
@@ -244,16 +223,13 @@ namespace SWPApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RequestId");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("DiamondId");
-
-                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Requests");
                 });
@@ -337,8 +313,6 @@ namespace SWPApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ResultId");
-
-                    b.HasIndex("DiamondId");
 
                     b.HasIndex("RequestId");
 
@@ -448,21 +422,7 @@ namespace SWPApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SWPApp.Models.Diamond", "Diamond")
-                        .WithMany()
-                        .HasForeignKey("DiamondId");
-
-                    b.HasOne("SWPApp.Models.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Customer");
-
-                    b.Navigation("Diamond");
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("SWPApp.Models.RequestDetail", b =>
@@ -486,19 +446,11 @@ namespace SWPApp.Migrations
 
             modelBuilder.Entity("SWPApp.Models.Result", b =>
                 {
-                    b.HasOne("SWPApp.Models.Diamond", "Diamond")
-                        .WithMany()
-                        .HasForeignKey("DiamondId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SWPApp.Models.Request", "Request")
                         .WithMany()
                         .HasForeignKey("RequestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Diamond");
 
                     b.Navigation("Request");
                 });

@@ -18,6 +18,7 @@ namespace SWPApp.Controllers.AdminClient
             _context = context;
         }
 
+
         // Create Employee
         [HttpPost("create-employee")]
         public async Task<IActionResult> CreateEmployee([FromBody] Employee employee)
@@ -185,27 +186,34 @@ namespace SWPApp.Controllers.AdminClient
                     c.CustomerId,
                     c.CustomerName,
                     c.Email,
+                    c.Address,
+                    c.IDCard,
+                    c.PhoneNumber
                 })
                 .ToListAsync();
 
             return Ok(customers);
         }
 
-        // List all Employees
-        [HttpGet("list-employees")]
-        public async Task<ActionResult<IEnumerable<Employee>>> ListEmployees()
+        // List all Employees where role != 1
+        [HttpGet("list-employees-except-role1")]
+        public async Task<ActionResult<IEnumerable<Employee>>> ListEmployeesExceptRole1()
         {
             var employees = await _context.Employees
+                .Where(e => e.Role != 1)
                 .Select(e => new
                 {
                     e.EmployeeId,
                     e.EmployeeName,
                     e.Email,
+                    e.Role,                    
+                   e.Phone
                 })
                 .ToListAsync();
 
             return Ok(employees);
         }
+
         // List all Requests with Details
         [HttpGet("list-requests-with-details")]
         public async Task<ActionResult<IEnumerable<object>>> ListRequestsWithDetails()
@@ -222,30 +230,31 @@ namespace SWPApp.Controllers.AdminClient
                         r.ServiceType,
                         rd.ServiceId,
                         rd.PaymentStatus,
-                        rd.PaymentMethod
+                        rd.PaymentMethod,
+                        r.Status
                     })
                 .ToListAsync();
 
             return Ok(requestsWithDetails);
         }
-        // Accept Request
-        [HttpPost("accept-request/{id}")]
-        public async Task<IActionResult> AcceptRequest(int id)
+        
+        //accept status = "kiểm định thành công "        
+        [HttpPut("update-request-status/{requestid}")]
+        public async Task<IActionResult> UpdateRequestStatus(int requestid)
         {
-            var request = await _context.Requests.FindAsync(id);
-
+            var request = await _context.Requests.FindAsync(requestid);
             if (request == null)
             {
                 return NotFound();
             }
 
-            request.Status = true; // Assuming 1 corresponds to 'true' and 0 corresponds to 'false'
-
+            request.Status = "kiểm định thành công";
             _context.Requests.Update(request);
             await _context.SaveChangesAsync();
 
             return Ok(request);
         }
+
 
     }
 }

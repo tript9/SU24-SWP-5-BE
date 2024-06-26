@@ -16,13 +16,13 @@ namespace SWPApp.Models
 
         public string Password { get; set; }
 
-        [Phone]
+       
         public string? PhoneNumber { get; set; } // Nullable string for PhoneNumber
 
         public string? IDCard { get; set; } // Nullable string for IDCard
 
         public string? Address { get; set; } // Nullable string for Address
-
+ 
         public bool Status { get; set; }
 
         public string? ResetToken { get; set; }

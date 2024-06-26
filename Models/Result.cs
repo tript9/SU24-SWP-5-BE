@@ -21,7 +21,7 @@ namespace SWPApp.Models
         public string Fluorescence { get; set; }
 
         public Request Request { get; set; }
-        public Diamond Diamond { get; set; }
+      
     }
 
 }
