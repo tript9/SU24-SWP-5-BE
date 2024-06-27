@@ -50,13 +50,6 @@ namespace SWPApp.Controllers
                 return NotFound();
             }
 
-            // Tìm kiếm chi tiết yêu cầu dựa trên RequestId
-            var requestDetail = _context.RequestDetails.FirstOrDefault(rd => rd.RequestId == request.RequestId);
-            if (requestDetail == null)
-            {
-                return NotFound();
-            }
-
             // Tạo đối tượng BillModel và trả về
             var result = new BillModel
             {
@@ -65,8 +58,7 @@ namespace SWPApp.Controllers
                 Email = customer.Email,
                 ServiceType = service.ServiceType,
                 ServicePrice = service.ServicePrice,
-                Status = request.Status,
-                PaymentMethod = requestDetail.PaymentMethod
+                Status = request.Status,             
             };
 
             return Ok(result);

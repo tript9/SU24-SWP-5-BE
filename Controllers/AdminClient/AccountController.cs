@@ -206,38 +206,37 @@ namespace SWPApp.Controllers.AdminClient
                     e.EmployeeId,
                     e.EmployeeName,
                     e.Email,
-                    e.Role,                    
-                   e.Phone
+                    e.Role,
+                    e.Phone
                 })
                 .ToListAsync();
 
             return Ok(employees);
         }
 
-        // List all Requests with Details
-        [HttpGet("list-requests-with-details")]
-        public async Task<ActionResult<IEnumerable<object>>> ListRequestsWithDetails()
+        [HttpGet("list-requests")]
+        public async Task<ActionResult<IEnumerable<object>>> ListRequests()
         {
-            var requestsWithDetails = await _context.Requests
-                .Join(_context.RequestDetails,
-                    r => r.RequestId,
-                    rd => rd.RequestId,
-                    (r, rd) => new
-                    {
-                        r.RequestId,
-                        r.CustomerId,
-                        r.RequestDate,
-                        r.ServiceType,
-                        rd.ServiceId,
-                        rd.PaymentStatus,
-                        rd.PaymentMethod,
-                        r.Status
-                    })
+            var requests = await _context.Requests
+                .Select(r => new
+                {
+                    r.RequestId,
+                    r.CustomerId,
+                    r.RequestDate,
+                    r.Email,
+                    r.PhoneNumber,
+                    r.IDCard,
+                    r.Address,
+                    //r.ServiceType,
+                    r.ServiceId,
+                    r.Status
+                })
                 .ToListAsync();
 
-            return Ok(requestsWithDetails);
+            return Ok(requests);
         }
-        
+
+
         //accept status = "kiểm định thành công "        
         [HttpPut("update-request-status/{requestid}")]
         public async Task<IActionResult> UpdateRequestStatus(int requestid)
