@@ -10,46 +10,53 @@ namespace SWPApp.Controllers.CustomerClient
     [ApiController]
     public class CreateRequestsController : ControllerBase
     {
+        public class CreateRequestDto
+        {
+            public int CustomerId { get; set; }
+            public string? PhoneNumber { get; set; }
+            public string? IDCard { get; set; }
+            public string? Address { get; set; }
+            public string ServiceId { get; set; }
+        }
         private readonly DiamondAssesmentSystemDBContext _context;
 
         public CreateRequestsController(DiamondAssesmentSystemDBContext context)
         {
             _context = context;
         }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateRequest([FromBody] Request request)
+        //Tạo đơn
+        [HttpPost("CreateRequest")]
+        public async Task<IActionResult> CreateRequest([FromBody] CreateRequestDto requestDto)
         {
             // Kiểm tra ServiceId có tồn tại trong bảng Service không
-            var service = await _context.Services.FindAsync(request.ServiceId);
+            var service = await _context.Services.FindAsync(requestDto.ServiceId);
             if (service == null)
             {
                 return BadRequest("Invalid ServiceId");
             }
 
             // Kiểm tra CustomerId có tồn tại trong bảng Customer không
-            var customer = await _context.Customers.FindAsync(request.CustomerId);
+            var customer = await _context.Customers.FindAsync(requestDto.CustomerId);
             if (customer == null)
             {
                 return BadRequest("Invalid CustomerId");
             }
 
             // Cập nhật thông tin Customer            
-            customer.PhoneNumber = request.PhoneNumber;
-            customer.IDCard = request.IDCard;
-            customer.Address = request.Address;
+            customer.PhoneNumber = requestDto.PhoneNumber;
+            customer.IDCard = requestDto.IDCard;
+            customer.Address = requestDto.Address;
 
             // Chỉ chèn một số trường cụ thể từ request
             var newRequest = new Request
             {
-                CustomerId = request.CustomerId,
-                EmployeeId = request.EmployeeId, // Assign EmployeeId from request (may be null)
+                CustomerId = requestDto.CustomerId,
                 RequestDate = DateTime.Now,
-                Email = request.Email,
-                PhoneNumber = request.PhoneNumber,
-                IDCard = request.IDCard,
-                Address = request.Address,
-                ServiceId = request.ServiceId,
+                Email = null, // Or set this to a default value or another field
+                PhoneNumber = requestDto.PhoneNumber,
+                IDCard = requestDto.IDCard,
+                Address = requestDto.Address,
+                ServiceId = requestDto.ServiceId,
                 Status = "Chờ thanh toán" // Hoặc bất kỳ trạng thái mặc định nào
             };
 
@@ -71,6 +78,7 @@ namespace SWPApp.Controllers.CustomerClient
                 PackageDescription = packageDescription
             });
         }
+
 
         //Search By RequestId
         [HttpGet("{id}")]

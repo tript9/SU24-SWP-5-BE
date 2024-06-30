@@ -203,10 +203,9 @@ namespace SWPApp.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmployeeId")
+                    b.Property<int?>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<string>("IDCard")
@@ -215,15 +214,13 @@ namespace SWPApp.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("RequestDate")
+                    b.Property<DateTime?>("RequestDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ServiceId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RequestId");
@@ -258,7 +255,7 @@ namespace SWPApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DiamondId")
+                    b.Property<int?>("DiamondId")
                         .HasColumnType("int");
 
                     b.Property<string>("DiamondOrigin")
@@ -404,9 +401,7 @@ namespace SWPApp.Migrations
 
                     b.HasOne("SWPApp.Models.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EmployeeId");
 
                     b.Navigation("Customer");
 

@@ -10,11 +10,15 @@ namespace SWPApp.Controllers.AdminClient
     public class ListAllResultController : ControllerBase
     {
         private readonly DiamondAssesmentSystemDBContext _context;
-        //list result data sau khi staff gửi admin
+        public ListAllResultController(DiamondAssesmentSystemDBContext context)
+        {
+            _context = context;
+        }
         [HttpGet("list-results")]
         public async Task<ActionResult<IEnumerable<Result>>> ListResults()
         {
             var results = await _context.Results
+                .Where(r => r.Request.Status == "Chờ xác nhận" || r.Request.Status == "Kiểm định thành công")
                 .Select(r => new
                 {
                     r.ResultId,
@@ -30,12 +34,15 @@ namespace SWPApp.Controllers.AdminClient
                     r.Proportions,
                     r.Polish,
                     r.Symmetry,
-                    r.Fluorescence
+                    r.Fluorescence,
+                    RequestStatus = r.Request.Status // Include the status in the response
                 })
                 .ToListAsync();
 
             return Ok(results);
         }
+
+
 
         //accept status = "kiểm định thành công "        
         [HttpPut("update-request-status/{requestid}")]

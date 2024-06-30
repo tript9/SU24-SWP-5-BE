@@ -9,6 +9,11 @@ namespace SWPApp.Controllers
     [ApiController]
     public class PaymentController : ControllerBase
     {
+        public class PaymentDTO
+        {
+            public int RequestId { get; set; }
+            public int CustomerId { get; set; }
+        }
         private readonly DiamondAssesmentSystemDBContext _context;
 
         public PaymentController(DiamondAssesmentSystemDBContext context)
@@ -18,32 +23,24 @@ namespace SWPApp.Controllers
 
         // Tôi đã thanh toán
         [HttpPost("UpdatePaymentStatus")]
-        public async Task<IActionResult> UpdatePaymentStatus([FromBody] Request request)
+        public async Task<IActionResult> UpdatePaymentStatus([FromBody] PaymentDTO paymentDto)
         {
-            // Kiểm tra RequestId có tồn tại trong bảng Request không
-            var existingRequest = await _context.Requests.FindAsync(request.RequestId);
+            var existingRequest = await _context.Requests.FindAsync(paymentDto.RequestId);
 
             if (existingRequest == null)
             {
                 return BadRequest("Invalid RequestId");
             }
 
-            // Lấy ServiceId từ bảng Request
-            var serviceId = existingRequest.ServiceId;
-
-            // Kiểm tra ServiceId có tồn tại trong bảng Service không
-            var service = await _context.Services.FindAsync(serviceId);
-            if (service == null)
-            {
-                return BadRequest("Invalid ServiceId");
-            }
+            // Assuming ServiceId is always valid and exists
+            var service = await _context.Services.FindAsync(existingRequest.ServiceId);
 
             // Cập nhật trạng thái của Request thành "Đã thanh toán"
             existingRequest.Status = "Đã thanh toán";
             await _context.SaveChangesAsync();
 
             // Xác định mô tả gói dịch vụ dựa trên ServiceId
-            string packageDescription = serviceId switch
+            string packageDescription = existingRequest.ServiceId switch
             {
                 "1" => "Gói cơ bản",
                 "2" => "Gói nâng cao",

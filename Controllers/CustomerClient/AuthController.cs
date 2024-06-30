@@ -138,12 +138,13 @@ namespace SWPApp.Controllers.CustomerClient
 
             return Ok(new
             {
-                Message = "Email confirmed successfully. You are now logged in.",
-                LoginToken = loginToken,
-                customer.CustomerName,
-                customer.CustomerId
+                Message = "1",
+                CustomerId = customer.CustomerId,
+                CustomerName = customer.CustomerName
             });
         }
+
+
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)

@@ -21,7 +21,7 @@ namespace SWPApp.Controllers.CustomerClient
         public async Task<IActionResult> GetRequestsByCustomerId(int customerId)
         {
             var customer = await _context.Customers
-                .Where(c => c.CustomerId == customerId && c.LoginToken != null)
+                .Where(c => c.CustomerId == customerId )
                 .FirstOrDefaultAsync();
 
             if (customer == null)
@@ -38,7 +38,23 @@ namespace SWPApp.Controllers.CustomerClient
                 return NotFound("No requests found for this customer.");
             }
 
-            return Ok(requests);
+            var requestsDto = requests.Select(r => new
+            {
+                r.RequestId,
+                r.CustomerId,
+                r.EmployeeId,
+                r.RequestDate,
+                r.Email,
+                r.PhoneNumber,
+                r.IDCard,
+                r.Address,
+                r.ServiceId,
+                r.Status
+            }).ToList();
+
+            return Ok(requestsDto);
         }
+
+
     }
 }

@@ -6,7 +6,7 @@ namespace SWPApp.Models
     {
         [Key]
         public int ResultId { get; set; }
-        public int DiamondId { get; set; }
+        public int? DiamondId { get; set; }  // Đã thay đổi kiểu thành nullable int
         public int RequestId { get; set; }
         public string DiamondOrigin { get; set; }
         public string Shape { get; set; }
@@ -21,7 +21,5 @@ namespace SWPApp.Models
         public string Fluorescence { get; set; }
 
         public Request Request { get; set; }
-      
     }
-
 }

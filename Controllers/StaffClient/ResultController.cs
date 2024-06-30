@@ -36,7 +36,6 @@ namespace SWPApp.Controllers
             _context = context;
         }
 
-        // Create action
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] ResultDTO resultDto)
         {
@@ -45,6 +44,7 @@ namespace SWPApp.Controllers
                 return BadRequest(ModelState);
             }
 
+            // Create the Result object
             var result = new Result
             {
                 DiamondId = resultDto.DiamondId,
@@ -62,11 +62,21 @@ namespace SWPApp.Controllers
                 Fluorescence = resultDto.Fluorescence
             };
 
+            // Add the Result to the database
             _context.Results.Add(result);
             await _context.SaveChangesAsync();
 
-            return Ok(new { Message = "Result created successfully.", ResultId = result.ResultId });
+            // Update the status of the related Request
+            var request = await _context.Requests.FindAsync(resultDto.RequestId);
+            if (request != null)
+            {
+                request.Status = "Chờ xác nhận";
+                await _context.SaveChangesAsync();
+            }
+
+            return Ok(new { Message = "Result created successfully. Chờ xác nhận", ResultId = result.ResultId });
         }
+
 
         // Update action
         [HttpPut("update/{requestId}")]
@@ -114,8 +124,7 @@ namespace SWPApp.Controllers
 
             var resultDto = new ResultDTO
             {
-                ResultId = result.ResultId,
-                DiamondId = result.DiamondId,
+                ResultId = result.ResultId,              
                 RequestId = result.RequestId,
                 DiamondOrigin = result.DiamondOrigin,
                 Shape = result.Shape,
