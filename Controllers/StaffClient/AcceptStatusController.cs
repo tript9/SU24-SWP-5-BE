@@ -17,8 +17,8 @@ namespace SWPApp.Controllers.StaffClient
         }
 
         // Accept Request sau khi nhận kim cương thì staff chuyển status thành đã nhận và đang xử lí
-        [HttpPut("Update-status-when-received-diamond/{requestId}")]
-        public async Task<IActionResult> UpdateStatusWhenReceivedDiamond(int requestId)
+        [HttpPut("Update-status-when-received-diamond/{requestId}/{employeeId}")]
+        public async Task<IActionResult> UpdateStatusWhenReceivedDiamond(int requestId, int employeeId)
         {
             var request = await _context.Requests.FindAsync(requestId);
 
@@ -28,6 +28,7 @@ namespace SWPApp.Controllers.StaffClient
             }
 
             request.Status = "Đã nhận kim cương và đang xử lí";
+            request.EmployeeId = employeeId; // Assuming there's an EmployeeId field in the Request model
 
             _context.Requests.Update(request);
             await _context.SaveChangesAsync();
@@ -36,10 +37,10 @@ namespace SWPApp.Controllers.StaffClient
         }
 
         // Sau khi cus nhận kim cương thì staff update status="khách hàng đã nhận kim cương" (ở cuspage)="đã nhận hàng"
-        [HttpPut("Update-status-done/{id}")]
-        public async Task<IActionResult> StatusDone(int id)
+        [HttpPut("Update-status-done/{requestid}/{employeeId}")]
+        public async Task<IActionResult> StatusDone(int requestid, int employeeId)
         {
-            var request = await _context.Requests.FindAsync(id);
+            var request = await _context.Requests.FindAsync(requestid);
 
             if (request == null)
             {
@@ -47,6 +48,7 @@ namespace SWPApp.Controllers.StaffClient
             }
 
             request.Status = "Khách hàng đã nhận kim cương";
+            request.EmployeeId = employeeId; // Assuming there's an EmployeeId field in the Request model
 
             _context.Requests.Update(request);
             await _context.SaveChangesAsync();
@@ -55,10 +57,10 @@ namespace SWPApp.Controllers.StaffClient
         }
 
         // Khách không nhận kim cương sau n ngày
-        [HttpPut("Update-status-sealed/{id}")]
-        public async Task<IActionResult> UpdateStatusSealed(int id)
+        [HttpPut("Update-status-sealed/{requestid}/{employeeId}")]
+        public async Task<IActionResult> UpdateStatusSealed(int requestid, int employeeId)
         {
-            var request = await _context.Requests.FindAsync(id);
+            var request = await _context.Requests.FindAsync(requestid);
 
             if (request == null)
             {
@@ -66,6 +68,7 @@ namespace SWPApp.Controllers.StaffClient
             }
 
             request.Status = "Kim cương đã niêm phong";
+            request.EmployeeId = employeeId; // Assuming there's an EmployeeId field in the Request model
 
             _context.Requests.Update(request);
             await _context.SaveChangesAsync();

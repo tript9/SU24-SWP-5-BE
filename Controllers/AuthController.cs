@@ -13,7 +13,7 @@ using SWPApp.Utils;
 using BCrypt;
 using Azure.Messaging;
 
-namespace SWPApp.Controllers.CustomerClient
+namespace SWPApp.Controllers
 {
     // Login and Register Models
     public class LoginModel
@@ -138,12 +138,11 @@ namespace SWPApp.Controllers.CustomerClient
 
             return Ok(new
             {
-                Message = "1",
-                CustomerId = customer.CustomerId,
+                Message = "Email confirmed successfully. You are now logged in.",
+                LoginToken = loginToken,
                 CustomerName = customer.CustomerName
             });
         }
-
 
 
         [HttpPost("login")]
@@ -166,10 +165,10 @@ namespace SWPApp.Controllers.CustomerClient
                 customer.Status = true; // Login successful, set status to true
                 await _context.SaveChangesAsync();
 
-                return Ok(new { Message = "Customer login successful.", LoginToken = loginToken, Role = 1, customer.CustomerName, customer.CustomerId });
+                return Ok(new { Message = "Customer login successful.", LoginToken = loginToken, Role = (int?)null, customerName = customer.CustomerName });
             }
 
-            if (employee != null )
+            if (employee != null)
             {
                 var loginToken = GenerateToken();
                 employee.LoginToken = loginToken;
@@ -177,37 +176,19 @@ namespace SWPApp.Controllers.CustomerClient
                 employee.Status = true; // Login successful, set status to true
                 await _context.SaveChangesAsync();
 
-                // Determine the role-specific message and role value
-                string roleSpecificMessage;
-                int roleValue;
+                // Determine the role-specific message
+                string roleSpecificMessage = employee.Role switch
+                {
+                    0 => "Staff login successful",
+                    1 => "Admin login successful",
+                    _ => "Login successful"
+                };
 
-                if (employee.Role == null)
-                {
-                    roleSpecificMessage = "Role 1";
-                    roleValue = 1;
-                }
-                else if (employee.Role == 0)
-                {
-                    roleSpecificMessage = "Role 2";
-                    roleValue = 2;
-                }
-                else if (employee.Role == 1)
-                {
-                    roleSpecificMessage = "Role 3";
-                    roleValue = 3;
-                }
-                else
-                {
-                    roleSpecificMessage = "Login successful";
-                    roleValue = (int)employee.Role; // Use the actual role value for any other roles
-                }
-
-                return Ok(new { Message = roleSpecificMessage, LoginToken = loginToken, Role = roleValue, employee.EmployeeName, employee.EmployeeId });
+                return Ok(new { Message = roleSpecificMessage, LoginToken = loginToken, employee.Role, });      
             }
 
             return Unauthorized("Invalid email or password");
         }
-
 
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordModel model)
@@ -263,6 +244,7 @@ namespace SWPApp.Controllers.CustomerClient
 
             return Ok(new { message = "Password reset successful.", customerName = customer.CustomerName });
         }
+
 
         // Token generation method
         private string GenerateToken()

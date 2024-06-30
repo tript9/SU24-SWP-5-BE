@@ -35,8 +35,7 @@ namespace SWPApp.Controllers
             var requestDetail = new RequestDetail
             {
                 RequestId = requestDetailDTO.RequestId,
-                ServiceId = requestDetailDTO.ServiceId,
-                PaymentStatus = requestDetailDTO.PaymentStatus,
+                ServiceId = requestDetailDTO.ServiceId,                
                 PaymentMethod = requestDetailDTO.PaymentMethod
             };
 
@@ -77,8 +76,7 @@ namespace SWPApp.Controllers
                 return NotFound("Request detail not found");
             }
 
-            requestDetail.ServiceId = requestDetailDTO.ServiceId;
-            requestDetail.PaymentStatus = requestDetailDTO.PaymentStatus;
+            requestDetail.ServiceId = requestDetailDTO.ServiceId;          
             requestDetail.PaymentMethod = requestDetailDTO.PaymentMethod;
 
             _context.RequestDetails.Update(requestDetail);

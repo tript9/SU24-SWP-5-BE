@@ -4,6 +4,7 @@ using SWPApp.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SWPApp.Controllers.AdminClient
 {
@@ -18,17 +19,38 @@ namespace SWPApp.Controllers.AdminClient
             _context = context;
         }
 
+        // DTO for Employee
+        public class EmployeeDTO
+        {
+            [Required]
+            public string EmployeeName { get; set; }
+
+            [Required]
+            [EmailAddress]
+            public string Email { get; set; }
+
+            [Required]
+            public string Password { get; set; }
+
+            public string Phone { get; set; }
+        }
 
         // Create Employee
         [HttpPost("create-employee")]
-        public async Task<IActionResult> CreateEmployee([FromBody] Employee employee)
+        public async Task<IActionResult> CreateEmployee([FromBody] EmployeeDTO employeeDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            employee.Password = BCrypt.Net.BCrypt.HashPassword(employee.Password);
+            var employee = new Employee
+            {
+                EmployeeName = employeeDto.EmployeeName,
+                Email = employeeDto.Email,
+                Password = employeeDto.Password, // No hashing
+                Phone = employeeDto.Phone
+            };
 
             _context.Employees.Add(employee);
             await _context.SaveChangesAsync();
@@ -44,8 +66,6 @@ namespace SWPApp.Controllers.AdminClient
             {
                 return BadRequest(ModelState);
             }
-
-            customer.Password = BCrypt.Net.BCrypt.HashPassword(customer.Password);
 
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
@@ -100,7 +120,7 @@ namespace SWPApp.Controllers.AdminClient
             employee.Email = updatedEmployee.Email;
             if (!string.IsNullOrEmpty(updatedEmployee.Password))
             {
-                employee.Password = BCrypt.Net.BCrypt.HashPassword(updatedEmployee.Password);
+                employee.Password = updatedEmployee.Password; // No hashing
             }
             employee.Phone = updatedEmployee.Phone;
             employee.Role = updatedEmployee.Role;
@@ -131,7 +151,7 @@ namespace SWPApp.Controllers.AdminClient
             customer.Email = updatedCustomer.Email;
             if (!string.IsNullOrEmpty(updatedCustomer.Password))
             {
-                customer.Password = BCrypt.Net.BCrypt.HashPassword(updatedCustomer.Password);
+                customer.Password = updatedCustomer.Password; // No hashing
             }
             customer.PhoneNumber = updatedCustomer.PhoneNumber;
             customer.IDCard = updatedCustomer.IDCard;
@@ -227,7 +247,6 @@ namespace SWPApp.Controllers.AdminClient
                     r.PhoneNumber,
                     r.IDCard,
                     r.Address,
-                    //r.ServiceType,
                     r.ServiceId,
                     r.Status
                 })
@@ -235,7 +254,6 @@ namespace SWPApp.Controllers.AdminClient
 
             return Ok(requests);
         }
-
 
         //accept status = "kiểm định thành công "        
         [HttpPut("update-request-status/{requestid}")]
@@ -253,7 +271,5 @@ namespace SWPApp.Controllers.AdminClient
 
             return Ok(request);
         }
-
-
     }
 }

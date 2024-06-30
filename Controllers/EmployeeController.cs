@@ -1,96 +1,105 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SWPApp.DTO;
 using SWPApp.Models;
+using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace SWPApp.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class EmployeeController : ControllerBase
+    public class EmployeeLoginModel
     {
-        private readonly DiamondAssesmentSystemDBContext _context;
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
 
-        public EmployeeController(DiamondAssesmentSystemDBContext context)
-        {
-            _context = context;
-        }
+        [Required]
+        public string Password { get; set; }
+        //    }
 
-        // Create Employee
-        [HttpPost("create-employee")]
-        public async Task<IActionResult> CreateEmployee([FromBody] Employee employee)
+        [Route("api/[controller]")]
+        [ApiController]
+        public class EmployeeController : ControllerBase
         {
-            if (!ModelState.IsValid)
+            private readonly DiamondAssesmentSystemDBContext _context;
+
+            public EmployeeController(DiamondAssesmentSystemDBContext context)
             {
-                return BadRequest(ModelState);
+                _context = context;
             }
 
-            await _context.Employees.AddAsync(employee);
-            await _context.SaveChangesAsync();
-
-            return Ok("Employee created successfully");
-        }
-
-        // Get Employee by Id
-        [HttpGet("get-employee/{id}")]
-        public async Task<IActionResult> GetEmployee(int id)
-        {
-            var employee = await _context.Employees.FindAsync(id);
-
-            if (employee == null)
+            [HttpPost("login")]
+            public async Task<IActionResult> Login([FromBody] EmployeeLoginModel model)
             {
-                return NotFound("Employee not found");
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var email = model.Email.ToLower();
+                var employee = await _context.Employees.FirstOrDefaultAsync(e => e.Email.ToLower() == email);
+
+                if (employee == null)
+                {
+                    return Unauthorized("Invalid email or password");
+                }
+
+                var loginToken = GenerateToken();
+                employee.LoginToken = loginToken;
+                employee.LoginTokenExpires = DateTime.UtcNow.AddMinutes(30);
+                employee.Status = true; // Set status to indicate logged in
+                await _context.SaveChangesAsync();
+
+                // Determine the role-specific message
+                string roleSpecificMessage = "";
+                if (employee.Role == 0)
+                {
+                    roleSpecificMessage = "Staff login successful";
+                }
+                else if (employee.Role == 1)
+                {
+                    roleSpecificMessage = "Manager login successful";
+                }
+                else
+                {
+                    // Handle other roles if needed
+                    roleSpecificMessage = "Login successful";
+                }
+
+                return Ok(roleSpecificMessage);
             }
 
-            return Ok(employee);
-        }
-
-        // Update Employee
-        [HttpPut("update-employee/{id}")]
-        public async Task<IActionResult> UpdateEmployee(int id, [FromBody] Employee employee)
-        {
-            if (!ModelState.IsValid)
+            [HttpPost("logout")]
+            public async Task<IActionResult> Logout()
             {
-                return BadRequest(ModelState);
+                var employee = await _context.Employees.FirstOrDefaultAsync(c => c.Status == true);
+
+                if (employee == null)
+                {
+                    return Unauthorized("Error");
+                }
+
+                // Invalidate the login token
+                employee.LoginToken = null;
+                employee.LoginTokenExpires = null;
+
+                // Set status to indicate logged out
+                employee.Status = false;
+
+                _context.Employees.Update(employee);
+                await _context.SaveChangesAsync();
+
+                return Ok("Logout successful.");
             }
 
-            var existingEmployee = await _context.Employees.FindAsync(id);
-
-            if (existingEmployee == null)
+            // Token generation method
+            private string GenerateToken()
             {
-                return NotFound("Employee not found");
+                return Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
             }
-
-            existingEmployee.EmployeeName = employee.EmployeeName;
-            existingEmployee.Email = employee.Email;
-            existingEmployee.Password = employee.Password;
-            existingEmployee.Phone = employee.Phone;
-            existingEmployee.Role = employee.Role;
-            existingEmployee.Status = employee.Status;
-            existingEmployee.LoginToken = employee.LoginToken;
-            existingEmployee.LoginTokenExpires = employee.LoginTokenExpires;
-
-            _context.Employees.Update(existingEmployee);
-            await _context.SaveChangesAsync();
-
-            return Ok("Employee updated successfully");
-        }
-
-        // Delete Employee
-        [HttpDelete("delete-employee/{id}")]
-        public async Task<IActionResult> DeleteEmployee(int id)
-        {
-            var employee = await _context.Employees.FindAsync(id);
-
-            if (employee == null)
-            {
-                return NotFound("Employee not found");
-            }
-
-            _context.Employees.Remove(employee);
-            await _context.SaveChangesAsync();
-
-            return Ok("Employee deleted successfully");
         }
     }
 }
+    
