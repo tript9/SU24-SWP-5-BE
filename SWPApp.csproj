@@ -7,7 +7,42 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BCrypt.Net" Version="0.1.0" />
+    <Compile Remove="Controllers\.AdminPage\**" />
+    <Compile Remove="Controllers\CertificatePage\**" />
+    <Compile Remove="Controllers\FeedbackPage\**" />
+    <Compile Remove="Controllers\InformationPage\**" />
+    <Compile Remove="Controllers\ManagerPage\**" />
+    <Compile Remove="Controllers\PaymentPage\**" />
+    <Compile Remove="Controllers\ReportPage\**" />
+    <Compile Remove="Controllers\ServicePage\**" />
+    <Content Remove="Controllers\.AdminPage\**" />
+    <Content Remove="Controllers\CertificatePage\**" />
+    <Content Remove="Controllers\FeedbackPage\**" />
+    <Content Remove="Controllers\InformationPage\**" />
+    <Content Remove="Controllers\ManagerPage\**" />
+    <Content Remove="Controllers\PaymentPage\**" />
+    <Content Remove="Controllers\ReportPage\**" />
+    <Content Remove="Controllers\ServicePage\**" />
+    <EmbeddedResource Remove="Controllers\.AdminPage\**" />
+    <EmbeddedResource Remove="Controllers\CertificatePage\**" />
+    <EmbeddedResource Remove="Controllers\FeedbackPage\**" />
+    <EmbeddedResource Remove="Controllers\InformationPage\**" />
+    <EmbeddedResource Remove="Controllers\ManagerPage\**" />
+    <EmbeddedResource Remove="Controllers\PaymentPage\**" />
+    <EmbeddedResource Remove="Controllers\ReportPage\**" />
+    <EmbeddedResource Remove="Controllers\ServicePage\**" />
+    <None Remove="Controllers\.AdminPage\**" />
+    <None Remove="Controllers\CertificatePage\**" />
+    <None Remove="Controllers\FeedbackPage\**" />
+    <None Remove="Controllers\InformationPage\**" />
+    <None Remove="Controllers\ManagerPage\**" />
+    <None Remove="Controllers\PaymentPage\**" />
+    <None Remove="Controllers\ReportPage\**" />
+    <None Remove="Controllers\ServicePage\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="MailKit" Version="4.6.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
@@ -25,7 +60,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\index.html" />
+    <None Include="wwwroot\homepage.html" />
   </ItemGroup>
 
 </Project>

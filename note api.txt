@@ -1,0 +1,30 @@
+1. AccountController
+POST /api/account/create-employee: Tạo mới một nhân viên.
+POST /api/account/create-customer: Tạo mới một khách hàng.
+GET /api/account/employee/{id}: Lấy thông tin của một nhân viên theo ID.
+GET /api/account/customer/{id}: Lấy thông tin của một khách hàng theo ID.
+PUT /api/account/update-employee/{id}: Cập nhật thông tin nhân viên.
+PUT /api/account/update-customer/{id}: Cập nhật thông tin khách hàng.
+DELETE /api/account/delete-employee/{id}: Xóa một nhân viên.
+DELETE /api/account/delete-customer/{id}: Xóa một khách hàng.
+GET /api/account/list-customers: Liệt kê tất cả khách hàng.
+GET /api/account/list-employees-except-role1: Liệt kê các nhân viên không có vai trò 1.
+GET /api/account/list-requests-with-details: Liệt kê tất cả các yêu cầu cùng chi tiết.
+GET /api/account/list-results: Liệt kê tất cả các kết quả.
+PUT /api/account/update-request-status/{id}: Cập nhật trạng thái của yêu cầu.
+2. BookingController (CustomerClient)
+POST /api/booking/book-appointment: Đặt lịch hẹn.
+3. HistoryRequestController (CustomerClient)
+GET /api/history/history/{customerId}: Lấy lịch sử yêu cầu của khách hàng.
+4. AcceptStatusController (StaffClient)
+PUT /api/acceptstatus/Update status-when received diamond/{id}: Cập nhật trạng thái khi nhận kim cương.
+PUT /api/acceptstatus/Update status-Done/{id}: Cập nhật trạng thái khi khách hàng đã nhận kim cương.
+5. CreateRequestController (StaffClient)
+POST /api/createrequest: Tạo yêu cầu mới.
+GET /api/createrequest/{id}: Lấy thông tin yêu cầu theo ID.
+6. CreateResultController
+POST /api/createresult/create: Tạo kết quả mới.
+PUT /api/createresult/update/{requestId}: Cập nhật kết quả.
+GET /api/createresult/get/{resultId}: Lấy kết quả theo ID kết quả.
+7. PaymentController (StaffClient)
+PUT /api/payment/payment-status&requeststatus/{requestId}: Cập nhật trạng thái thanh toán và trạng thái yêu cầu.

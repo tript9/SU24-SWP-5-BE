@@ -2,6 +2,7 @@
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using SWPApp.Controllers.CustomerClient;
 using SWPApp.Models;
 
 public class CustomerService

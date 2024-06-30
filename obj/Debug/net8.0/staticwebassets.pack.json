@@ -1,8 +1,8 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\wwwroot\\index.html",
-      "PackagePath": "staticwebassets\\index.html"
+      "Id": "D:\\PROJECT-TEST\\wwwroot\\homepage.html",
+      "PackagePath": "staticwebassets\\homepage.html"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.SWPApp.Microsoft.AspNetCore.StaticWebAssets.props",

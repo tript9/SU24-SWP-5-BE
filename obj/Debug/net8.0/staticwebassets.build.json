@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "II+S5wnM7n5ith9sGPWhNZb9HBim+H/D1Jpt6iOUjzo=",
+  "Hash": "vnFPHwD5/dMeRpABjtot9Mly2FbMtzK0ezuq+UY/k/M=",
   "Source": "SWPApp",
   "BasePath": "_content/SWPApp",
   "Mode": "Default",
@@ -10,19 +10,19 @@
     {
       "Name": "SWPApp\\wwwroot",
       "Source": "SWPApp",
-      "ContentRoot": "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\wwwroot\\",
+      "ContentRoot": "D:\\PROJECT-TEST\\wwwroot\\",
       "BasePath": "_content/SWPApp",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\wwwroot\\index.html",
+      "Identity": "D:\\PROJECT-TEST\\wwwroot\\homepage.html",
       "SourceId": "SWPApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\wwwroot\\",
+      "ContentRoot": "D:\\PROJECT-TEST\\wwwroot\\",
       "BasePath": "_content/SWPApp",
-      "RelativePath": "index.html",
+      "RelativePath": "homepage.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33,7 +33,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\index.html"
+      "OriginalItemSpec": "wwwroot\\homepage.html"
     }
   ]
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\SWPApp.csproj": {}
+    "D:\\PROJECT-TEST\\SWPApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\SWPApp.csproj": {
+    "D:\\PROJECT-TEST\\SWPApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\SWPApp.csproj",
+        "projectUniqueName": "D:\\PROJECT-TEST\\SWPApp.csproj",
         "projectName": "SWPApp",
-        "projectPath": "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\SWPApp.csproj",
+        "projectPath": "D:\\PROJECT-TEST\\SWPApp.csproj",
         "packagesPath": "C:\\Users\\MSI VN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MSI VN\\Desktop\\SWP391\\SWPApp\\obj\\",
+        "outputPath": "D:\\PROJECT-TEST\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MSI VN\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,9 +46,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "BCrypt.Net": {
+            "BCrypt.Net-Next": {
               "target": "Package",
-              "version": "[0.1.0, )"
+              "version": "[4.0.3, )"
             },
             "MailKit": {
               "target": "Package",
