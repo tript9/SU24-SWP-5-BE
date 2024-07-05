@@ -17,8 +17,6 @@ namespace SWPApp.Controllers.StaffClient
         {
             _context = context;
         }
-
-        // Danh sách đơn có trạng thái là "Đã thanh toán"
         [HttpGet("history/paid")]
         public async Task<IActionResult> GetPaidRequests()
         {
@@ -31,15 +29,23 @@ namespace SWPApp.Controllers.StaffClient
             return Ok(requests ?? new List<Request>());
         }
 
+
         // Danh sách đơn có trạng thái là "Đã nhận kim cương và đang xử lí"
         [HttpGet("history/processing")]
-        public async Task<IActionResult> GetProcessingRequests()
+        public async Task<IActionResult> GetProcessingRequests([FromQuery] int? employeeId)
         {
-            var requests = await _context.Requests
+            var query = _context.Requests
                 .Where(r => r.Status == "Đã nhận kim cương và đang xử lí")
                 .Include(r => r.Customer)
                 .Include(r => r.Employee)
-                .ToListAsync();
+                .AsQueryable();
+
+            if (employeeId.HasValue)
+            {
+                query = query.Where(r => r.EmployeeId == employeeId.Value);
+            }
+
+            var requests = await query.ToListAsync();
 
             return Ok(requests ?? new List<Request>());
         }

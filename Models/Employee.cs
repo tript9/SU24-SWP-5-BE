@@ -16,8 +16,8 @@ namespace SWPApp.Models
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
-        public string Password { get; set; }
+       
+        public string? Password { get; set; }
 
         public string Phone { get; set; }
         public int Role { get; set; }

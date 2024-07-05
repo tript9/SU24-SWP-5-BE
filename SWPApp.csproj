@@ -1,66 +1,70 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Controllers\.AdminPage\**" />
-    <Compile Remove="Controllers\CertificatePage\**" />
-    <Compile Remove="Controllers\FeedbackPage\**" />
-    <Compile Remove="Controllers\InformationPage\**" />
-    <Compile Remove="Controllers\ManagerPage\**" />
-    <Compile Remove="Controllers\PaymentPage\**" />
-    <Compile Remove="Controllers\ReportPage\**" />
-    <Compile Remove="Controllers\ServicePage\**" />
-    <Content Remove="Controllers\.AdminPage\**" />
-    <Content Remove="Controllers\CertificatePage\**" />
-    <Content Remove="Controllers\FeedbackPage\**" />
-    <Content Remove="Controllers\InformationPage\**" />
-    <Content Remove="Controllers\ManagerPage\**" />
-    <Content Remove="Controllers\PaymentPage\**" />
-    <Content Remove="Controllers\ReportPage\**" />
-    <Content Remove="Controllers\ServicePage\**" />
-    <EmbeddedResource Remove="Controllers\.AdminPage\**" />
-    <EmbeddedResource Remove="Controllers\CertificatePage\**" />
-    <EmbeddedResource Remove="Controllers\FeedbackPage\**" />
-    <EmbeddedResource Remove="Controllers\InformationPage\**" />
-    <EmbeddedResource Remove="Controllers\ManagerPage\**" />
-    <EmbeddedResource Remove="Controllers\PaymentPage\**" />
-    <EmbeddedResource Remove="Controllers\ReportPage\**" />
-    <EmbeddedResource Remove="Controllers\ServicePage\**" />
-    <None Remove="Controllers\.AdminPage\**" />
-    <None Remove="Controllers\CertificatePage\**" />
-    <None Remove="Controllers\FeedbackPage\**" />
-    <None Remove="Controllers\InformationPage\**" />
-    <None Remove="Controllers\ManagerPage\**" />
-    <None Remove="Controllers\PaymentPage\**" />
-    <None Remove="Controllers\ReportPage\**" />
-    <None Remove="Controllers\ServicePage\**" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Controllers\AdminPage\**" />
+		<Compile Remove="Controllers\CertificatePage\**" />
+		<Compile Remove="Controllers\FeedbackPage\**" />
+		<Compile Remove="Controllers\InformationPage\**" />
+		<Compile Remove="Controllers\ManagerPage\**" />
+		<Compile Remove="Controllers\PaymentPage\**" />
+		<Compile Remove="Controllers\ReportPage\**" />
+		<Compile Remove="Controllers\ServicePage\**" />
+		<Content Remove="Controllers\AdminPage\**" />
+		<Content Remove="Controllers\CertificatePage\**" />
+		<Content Remove="Controllers\FeedbackPage\**" />
+		<Content Remove="Controllers\InformationPage\**" />
+		<Content Remove="Controllers\ManagerPage\**" />
+		<Content Remove="Controllers\PaymentPage\**" />
+		<Content Remove="Controllers\ReportPage\**" />
+		<Content Remove="Controllers\ServicePage\**" />
+		<EmbeddedResource Remove="Controllers\AdminPage\**" />
+		<EmbeddedResource Remove="Controllers\CertificatePage\**" />
+		<EmbeddedResource Remove="Controllers\FeedbackPage\**" />
+		<EmbeddedResource Remove="Controllers\InformationPage\**" />
+		<EmbeddedResource Remove="Controllers\ManagerPage\**" />
+		<EmbeddedResource Remove="Controllers\PaymentPage\**" />
+		<EmbeddedResource Remove="Controllers\ReportPage\**" />
+		<EmbeddedResource Remove="Controllers\ServicePage\**" />
+		<None Remove="Controllers\AdminPage\**" />
+		<None Remove="Controllers\CertificatePage\**" />
+		<None Remove="Controllers\FeedbackPage\**" />
+		<None Remove="Controllers\InformationPage\**" />
+		<None Remove="Controllers\ManagerPage\**" />
+		<None Remove="Controllers\PaymentPage\**" />
+		<None Remove="Controllers\ReportPage\**" />
+		<None Remove="Controllers\ServicePage\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
-    <PackageReference Include="MailKit" Version="4.6.0" />
-    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.3.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.6">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+		<PackageReference Include="itext7" Version="8.0.4" />
+		<!--<PackageReference Include="itext7.bouncycastle" Version="8.0.4" />-->
+		<PackageReference Include="MailKit" Version="4.6.0" />
+		<PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.3.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.6">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="PdfSharp" Version="6.1.1" />
+		<PackageReference Include="Polybioz.HtmlRenderer.PdfSharp.Core" Version="1.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\homepage.html" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="wwwroot\homepage.html" />
+	</ItemGroup>
 
 </Project>

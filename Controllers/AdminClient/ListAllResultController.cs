@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SWPApp.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SWPApp.Controllers.AdminClient
 {
@@ -10,15 +13,24 @@ namespace SWPApp.Controllers.AdminClient
     public class ListAllResultController : ControllerBase
     {
         private readonly DiamondAssesmentSystemDBContext _context;
+
         public ListAllResultController(DiamondAssesmentSystemDBContext context)
         {
             _context = context;
         }
+
         [HttpGet("list-results")]
-        public async Task<ActionResult<IEnumerable<Result>>> ListResults()
+        public async Task<ActionResult<IEnumerable<object>>> ListResults([FromQuery] int? employeeId = null)
         {
-            var results = await _context.Results
-                .Where(r => r.Request.Status == "Chờ xác nhận" || r.Request.Status == "Kiểm định thành công")
+            IQueryable<Result> query = _context.Results
+                .Where(r => r.Request.Status == "Chờ xác nhận" || r.Request.Status == "Kiểm định thành công");
+
+            if (employeeId.HasValue)
+            {
+                query = query.Where(r => r.Request.EmployeeId == employeeId.Value);
+            }
+
+            var results = await query
                 .Select(r => new
                 {
                     r.ResultId,
@@ -41,10 +53,7 @@ namespace SWPApp.Controllers.AdminClient
 
             return Ok(results);
         }
-
-
-
-        //accept status = "kiểm định thành công "        
+        // Accept status = "kiểm định thành công "
         [HttpPut("update-request-status/{requestid}")]
         public async Task<IActionResult> UpdateRequestStatus(int requestid)
         {
@@ -54,11 +63,13 @@ namespace SWPApp.Controllers.AdminClient
                 return NotFound();
             }
 
-            request.Status = "kiểm định thành công";
+            request.Status = "Kiểm định thành công";
             _context.Requests.Update(request);
             await _context.SaveChangesAsync();
 
             return Ok(request);
         }
+
+       
     }
 }
