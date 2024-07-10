@@ -8,8 +8,7 @@ namespace SWPApp.Models
         public string ServiceId { get; set; }
         public string ServiceType { get; set; }
         public string Description { get; set; }
-        public decimal ServicePrice { get; set; }
+        public int ServicePrice { get; set; } 
         public int Duration { get; set; }
     }
-
 }

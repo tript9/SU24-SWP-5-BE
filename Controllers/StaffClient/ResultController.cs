@@ -13,7 +13,7 @@ namespace SWPApp.Controllers
         public class ResultDTO
         {
             [Key]
-            public int ResultId { get; set; }
+            public int? ResultId { get; set; }
             public int DiamondId { get; set; }
             public int RequestId { get; set; }
             public string DiamondOrigin { get; set; }
@@ -44,6 +44,20 @@ namespace SWPApp.Controllers
                 return BadRequest(ModelState);
             }
 
+            // Check if the Request exists using ResultDto.RequestId
+            var request = await _context.Requests.FindAsync(resultDto.RequestId);
+            if (request == null)
+            {
+                return NotFound(new { Message = "Request not found for the given RequestId." });
+            }
+
+            // Check if a Result already exists for the given RequestId
+            var existingResult = await _context.Results.FirstOrDefaultAsync(r => r.RequestId == resultDto.RequestId);
+            if (existingResult != null)
+            {
+                return BadRequest(new { Message = "A Result already exists for the given RequestId." });
+            }
+
             // Create the Result object
             var result = new Result
             {
@@ -67,12 +81,8 @@ namespace SWPApp.Controllers
             await _context.SaveChangesAsync();
 
             // Update the status of the related Request
-            var request = await _context.Requests.FindAsync(resultDto.RequestId);
-            if (request != null)
-            {
-                request.Status = "Chờ xác nhận";
-                await _context.SaveChangesAsync();
-            }
+            request.Status = "Chờ xác nhận";
+            await _context.SaveChangesAsync();
 
             return Ok(new { Message = "Result created successfully. Chờ xác nhận", ResultId = result.ResultId });
         }

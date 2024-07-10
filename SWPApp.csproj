@@ -44,6 +44,7 @@
 	<ItemGroup>
 		<PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
 		<PackageReference Include="itext7" Version="8.0.4" />
+		<PackageReference Include="iTextSharp" Version="5.5.13.4" />
 		<!--<PackageReference Include="itext7.bouncycastle" Version="8.0.4" />-->
 		<PackageReference Include="MailKit" Version="4.6.0" />
 		<PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.3.0" />
@@ -58,13 +59,20 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="payOS" Version="1.0.6" />
 		<PackageReference Include="PdfSharp" Version="6.1.1" />
 		<PackageReference Include="Polybioz.HtmlRenderer.PdfSharp.Core" Version="1.0.0" />
+		<PackageReference Include="QRCoder" Version="1.6.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+		<PackageReference Include="System.Drawing.Common" Version="8.0.6" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="wwwroot\homepage.html" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
 	</ItemGroup>
 
 </Project>

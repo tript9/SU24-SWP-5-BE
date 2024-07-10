@@ -29,25 +29,24 @@ namespace SWPApp.Controllers.StaffClient
             return Ok(requests ?? new List<Request>());
         }
 
+[HttpGet("history/processing")]
+public async Task<IActionResult> GetProcessingRequests([FromQuery] int? employeeId)
+{
+    var query = _context.Requests
+        .Where(r => r.Status == "Đã nhận kim cương và đang xử lí" )
+        .Include(r => r.Customer)
+        .Include(r => r.Employee)
+        .AsQueryable();
 
-        // Danh sách đơn có trạng thái là "Đã nhận kim cương và đang xử lí"
-        [HttpGet("history/processing")]
-        public async Task<IActionResult> GetProcessingRequests([FromQuery] int? employeeId)
-        {
-            var query = _context.Requests
-                .Where(r => r.Status == "Đã nhận kim cương và đang xử lí")
-                .Include(r => r.Customer)
-                .Include(r => r.Employee)
-                .AsQueryable();
+    if (employeeId.HasValue)
+    {
+        query = query.Where(r => r.EmployeeId == employeeId.Value);
+    }
 
-            if (employeeId.HasValue)
-            {
-                query = query.Where(r => r.EmployeeId == employeeId.Value);
-            }
+    var requests = await query.ToListAsync();
 
-            var requests = await query.ToListAsync();
+    return Ok(requests ?? new List<Request>());
+}
 
-            return Ok(requests ?? new List<Request>());
-        }
     }
 }

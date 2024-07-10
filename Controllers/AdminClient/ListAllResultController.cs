@@ -23,7 +23,7 @@ namespace SWPApp.Controllers.AdminClient
         public async Task<ActionResult<IEnumerable<object>>> ListResults([FromQuery] int? employeeId = null)
         {
             IQueryable<Result> query = _context.Results
-                .Where(r => r.Request.Status == "Chờ xác nhận" || r.Request.Status == "Kiểm định thành công");
+                .Where(r => r.Request.Status == "Chờ xác nhận" || r.Request.Status == "Kiểm định thành công"||r.Request.Status== "Yêu cầu bị từ chối");
 
             if (employeeId.HasValue)
             {
@@ -53,6 +53,7 @@ namespace SWPApp.Controllers.AdminClient
 
             return Ok(results);
         }
+
         // Accept status = "kiểm định thành công "
         [HttpPut("update-request-status/{requestid}")]
         public async Task<IActionResult> UpdateRequestStatus(int requestid)
@@ -70,6 +71,21 @@ namespace SWPApp.Controllers.AdminClient
             return Ok(request);
         }
 
-       
+        // Update request status to "Yêu cầu bị từ chối"
+        [HttpPut("reject-request-status/{requestid}")]
+        public async Task<IActionResult> RejectRequestStatus(int requestid)
+        {
+            var request = await _context.Requests.FindAsync(requestid);
+            if (request == null)
+            {
+                return NotFound();
+            }
+
+            request.Status = "Yêu cầu bị từ chối";
+            _context.Requests.Update(request);
+            await _context.SaveChangesAsync();
+
+            return Ok(request);
+        }
     }
 }

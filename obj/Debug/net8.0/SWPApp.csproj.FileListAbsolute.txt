@@ -562,9 +562,6 @@ D:\PROJECT-TEST\bin\Debug\net8.0\runtimes\win-arm\native\Microsoft.Data.SqlClien
 D:\PROJECT-TEST\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 D:\PROJECT-TEST\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 D:\PROJECT-TEST\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-D:\PROJECT-TEST\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
-D:\PROJECT-TEST\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
-D:\PROJECT-TEST\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 D:\PROJECT-TEST\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 D:\PROJECT-TEST\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 D:\PROJECT-TEST\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
@@ -619,3 +616,7 @@ D:\PROJECT-TEST\bin\Debug\net8.0\PdfSharp.WPFonts.dll
 D:\PROJECT-TEST\bin\Debug\net8.0\PdfSharp.dll
 D:\PROJECT-TEST\bin\Debug\net8.0\de\PdfSharp.Charting.resources.dll
 D:\PROJECT-TEST\bin\Debug\net8.0\de\PdfSharp.resources.dll
+D:\PROJECT-TEST\bin\Debug\net8.0\itextsharp.dll
+D:\PROJECT-TEST\bin\Debug\net8.0\payos-lib-backend-dotnet.dll
+D:\PROJECT-TEST\bin\Debug\net8.0\QRCoder.dll
+D:\PROJECT-TEST\bin\Debug\net8.0\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll
