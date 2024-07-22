@@ -35,46 +35,6 @@ namespace SWPApp.Controllers
         {
             _context = context;
         }
-        [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] ResultDTO resultDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            // Create the Result object
-            var result = new Result
-            {
-                DiamondId = resultDto.DiamondId,
-                RequestId = resultDto.RequestId,
-                DiamondOrigin = resultDto.DiamondOrigin,
-                Shape = resultDto.Shape,
-                Measurements = resultDto.Measurements,
-                CaratWeight = resultDto.CaratWeight,
-                Color = resultDto.Color,
-                Clarity = resultDto.Clarity,
-                Cut = resultDto.Cut,
-                Proportions = resultDto.Proportions,
-                Polish = resultDto.Polish,
-                Symmetry = resultDto.Symmetry,
-                Fluorescence = resultDto.Fluorescence
-            };
-
-            // Add the Result to the database
-            _context.Results.Add(result);
-            await _context.SaveChangesAsync();
-
-            // Update the status of the related Request
-            var request = await _context.Requests.FindAsync(resultDto.RequestId);
-            if (request != null)
-            {
-                request.Status = "Chờ xác nhận";
-                await _context.SaveChangesAsync();
-            }
-
-            return Ok(new { Message = "Result created successfully. Chờ xác nhận", ResultId = result.ResultId });
-        }
 
         [HttpPut("update/{resultId}")]
         public async Task<IActionResult> Update(int resultId, [FromBody] ResultDTO updatedResultDto)
