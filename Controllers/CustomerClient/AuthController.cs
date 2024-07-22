@@ -101,7 +101,6 @@ namespace SWPApp.Controllers.CustomerClient
 
             return Ok("Please check your email for the confirmation code.");
         }
-
         [HttpPost("confirm-email")]
         public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmEmailModel model)
         {
@@ -138,11 +137,14 @@ namespace SWPApp.Controllers.CustomerClient
 
             return Ok(new
             {
-                Message = "1",
+                Message = "Customer login successful.",
+                LoginToken = loginToken,
+                Role = 1,
                 CustomerId = customer.CustomerId,
                 CustomerName = customer.CustomerName
             });
         }
+
 
 
 

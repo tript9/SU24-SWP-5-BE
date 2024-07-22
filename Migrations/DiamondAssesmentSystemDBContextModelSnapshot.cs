@@ -143,7 +143,6 @@ namespace SWPApp.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
@@ -329,8 +328,8 @@ namespace SWPApp.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("ServicePrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("ServicePrice")
+                        .HasColumnType("int");
 
                     b.Property<string>("ServiceType")
                         .IsRequired()

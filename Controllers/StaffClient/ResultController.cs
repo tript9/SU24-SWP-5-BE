@@ -13,7 +13,7 @@ namespace SWPApp.Controllers
         public class ResultDTO
         {
             [Key]
-            public int ResultId { get; set; }
+            public int? ResultId { get; set; }
             public int DiamondId { get; set; }
             public int RequestId { get; set; }
             public string DiamondOrigin { get; set; }
@@ -35,7 +35,6 @@ namespace SWPApp.Controllers
         {
             _context = context;
         }
-
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] ResultDTO resultDto)
         {
@@ -77,23 +76,21 @@ namespace SWPApp.Controllers
             return Ok(new { Message = "Result created successfully. Chờ xác nhận", ResultId = result.ResultId });
         }
 
-
-        // Update action
-        [HttpPut("update/{requestId}")]
-        public async Task<IActionResult> Update(int requestId, [FromBody] ResultDTO updatedResultDto)
+        [HttpPut("update/{resultId}")]
+        public async Task<IActionResult> Update(int resultId, [FromBody] ResultDTO updatedResultDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var result = await _context.Results.FirstOrDefaultAsync(r => r.RequestId == requestId);
+            var result = await _context.Results.FirstOrDefaultAsync(r => r.ResultId == resultId);
             if (result == null)
             {
-                return NotFound("Result not found for the specified RequestId.");
+                return NotFound("Result not found for the specified ResultId.");
             }
 
-            // Update the properties
+            // Update the properties of the result
             result.DiamondId = updatedResultDto.DiamondId;
             result.DiamondOrigin = updatedResultDto.DiamondOrigin;
             result.Shape = updatedResultDto.Shape;
@@ -107,10 +104,19 @@ namespace SWPApp.Controllers
             result.Symmetry = updatedResultDto.Symmetry;
             result.Fluorescence = updatedResultDto.Fluorescence;
 
+            // Find the related Request and update its status
+            var request = await _context.Requests.FirstOrDefaultAsync(r => r.RequestId == result.RequestId);
+            if (request != null)
+            {
+                request.Status = "Chờ xác nhận";
+            }
+
             await _context.SaveChangesAsync();
 
-            return Ok(new { Message = "Result updated successfully.", ResultId = result.ResultId });
+            return Ok(new { Message = "Result updated successfully. Chờ xác nhận", ResultId = result.ResultId });
         }
+
+
 
         // Get Result by ResultId action
         [HttpGet("get/{resultId}")]

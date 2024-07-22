@@ -74,10 +74,10 @@ namespace SWPApp.Controllers.AdminClient
         }
 
         // Get Employee by ID
-        [HttpGet("employee/{id}")]
-        public async Task<IActionResult> GetEmployee(int id)
+        [HttpGet("employee/{employeeid}")]
+        public async Task<IActionResult> GetEmployee(int employeeid)
         {
-            var employee = await _context.Employees.FindAsync(id);
+            var employee = await _context.Employees.FindAsync(employeeid);
 
             if (employee == null)
             {
@@ -102,15 +102,11 @@ namespace SWPApp.Controllers.AdminClient
         }
 
         // Update Employee
-        [HttpPut("update-employee/{id}")]
-        public async Task<IActionResult> UpdateEmployee(int id, [FromBody] Employee updatedEmployee)
-        {
-            if (id != updatedEmployee.EmployeeId)
-            {
-                return BadRequest("Employee ID mismatch");
-            }
+        [HttpPut("update-employee/{employeeid}")]
+        public async Task<IActionResult> UpdateEmployee(int employeeid, [FromBody] Employee updatedEmployee)       {
+            
 
-            var employee = await _context.Employees.FindAsync(id);
+            var employee = await _context.Employees.FindAsync(employeeid);
             if (employee == null)
             {
                 return NotFound();
@@ -165,10 +161,10 @@ namespace SWPApp.Controllers.AdminClient
         }
 
         // Delete Employee
-        [HttpDelete("delete-employee/{id}")]
-        public async Task<IActionResult> DeleteEmployee(int id)
+        [HttpDelete("delete-employee/{employeeid}")]
+        public async Task<IActionResult> DeleteEmployee(int employeeid)
         {
-            var employee = await _context.Employees.FindAsync(id);
+            var employee = await _context.Employees.FindAsync(employeeid);
             if (employee == null)
             {
                 return NotFound();
