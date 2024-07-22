@@ -67,13 +67,19 @@ namespace SWPApp.Controllers.StaffClient
                 return NotFound();
             }
 
-            request.Status = "Kim cương đã niêm phong";
-            request.EmployeeId = employeeId; // Assuming there's an EmployeeId field in the Request model
+            if (request.Status == "Kiểm định thành công")
+            {
+                request.Status = "Kim cương đã niêm phong";
+                request.EmployeeId = employeeId; // Assuming there's an EmployeeId field in the Request model
 
-            _context.Requests.Update(request);
-            await _context.SaveChangesAsync();
+                _context.Requests.Update(request);
+                await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Lý do khách không nhận sau n ngày" });
+                return Ok(request);
+            }
+
+            return BadRequest(new { message = "Trạng thái yêu cầu không phải 'kiểm định thành công'" });
         }
+
     }
 }

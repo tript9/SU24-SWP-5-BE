@@ -8717,11 +8717,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\PROJECT-TEST\\SWPApp.csproj",
+      "projectUniqueName": "D:\\SU24-SWP-5-BE\\SWPApp.csproj",
       "projectName": "SWPApp",
-      "projectPath": "D:\\PROJECT-TEST\\SWPApp.csproj",
+      "projectPath": "D:\\SU24-SWP-5-BE\\SWPApp.csproj",
       "packagesPath": "C:\\Users\\MSI VN\\.nuget\\packages\\",
-      "outputPath": "D:\\PROJECT-TEST\\obj\\",
+      "outputPath": "D:\\SU24-SWP-5-BE\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\MSI VN\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8849,12 +8849,6 @@
     }
   },
   "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    },
     {
       "code": "NU1701",
       "level": "Warning",

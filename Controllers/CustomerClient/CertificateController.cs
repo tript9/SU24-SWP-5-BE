@@ -12,12 +12,6 @@ namespace SWPApp.Controllers
     [ApiController]
     public class CertificateController : ControllerBase
     {
-        public class CertificateDTO
-        {
-            public int ResultId { get; set; }
-            public DateTime IssueDate { get; set; }
-        }
-
         private readonly DiamondAssesmentSystemDBContext _context;
 
         public CertificateController(DiamondAssesmentSystemDBContext context)

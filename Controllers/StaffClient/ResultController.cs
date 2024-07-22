@@ -77,6 +77,56 @@ namespace SWPApp.Controllers
         }
 
 
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody] ResultDTO resultDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // Check if the Request exists using ResultDto.RequestId
+            var request = await _context.Requests.FindAsync(resultDto.RequestId);
+            if (request == null)
+            {
+                return NotFound(new { Message = "Request not found for the given RequestId." });
+            }
+
+            // Check if a Result already exists for the given RequestId
+            var existingResult = await _context.Results.FirstOrDefaultAsync(r => r.RequestId == resultDto.RequestId);
+            if (existingResult != null)
+            {
+                return BadRequest(new { Message = "A Result already exists for the given RequestId." });
+            }
+
+            // Create the Result object
+            var result = new Result
+            {
+                DiamondId = resultDto.DiamondId,
+                RequestId = resultDto.RequestId,
+                DiamondOrigin = resultDto.DiamondOrigin,
+                Shape = resultDto.Shape,
+                Measurements = resultDto.Measurements,
+                CaratWeight = resultDto.CaratWeight,
+                Color = resultDto.Color,
+                Clarity = resultDto.Clarity,
+                Cut = resultDto.Cut,
+                Proportions = resultDto.Proportions,
+                Polish = resultDto.Polish,
+                Symmetry = resultDto.Symmetry,
+                Fluorescence = resultDto.Fluorescence
+            };
+
+            // Add the Result to the database
+            _context.Results.Add(result);
+            await _context.SaveChangesAsync();
+
+            // Update the status of the related Request
+            request.Status = "Chờ xác nhận";
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Message = "Result created successfully. Chờ xác nhận", ResultId = result.ResultId });
+        }
 
         // Get Result by ResultId action
         [HttpGet("get/{resultId}")]
@@ -90,7 +140,7 @@ namespace SWPApp.Controllers
 
             var resultDto = new ResultDTO
             {
-                ResultId = result.ResultId,              
+                ResultId = result.ResultId,
                 RequestId = result.RequestId,
                 DiamondOrigin = result.DiamondOrigin,
                 Shape = result.Shape,

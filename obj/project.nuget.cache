@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lkhO6xaCqOQ=",
+  "dgSpecHash": "I0c65eJCDr8=",
   "success": true,
-  "projectFilePath": "D:\\PROJECT-TEST\\SWPApp.csproj",
+  "projectFilePath": "D:\\SU24-SWP-5-BE\\SWPApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MSI VN\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\MSI VN\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
@@ -163,12 +163,6 @@
     "C:\\Users\\MSI VN\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512"
   ],
   "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    },
     {
       "code": "NU1701",
       "level": "Warning",

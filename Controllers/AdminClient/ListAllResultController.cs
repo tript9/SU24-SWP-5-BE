@@ -23,7 +23,7 @@ namespace SWPApp.Controllers.AdminClient
         public async Task<ActionResult<IEnumerable<object>>> ListResults([FromQuery] int? employeeId = null)
         {
             IQueryable<Result> query = _context.Results
-                .Where(r => r.Request.Status == "Chờ xác nhận" || r.Request.Status == "Kiểm định thành công"||r.Request.Status== "Yêu cầu bị từ chối");
+                .Where(r => r.Request.Status == "Chờ xác nhận" || r.Request.Status == "Kiểm định thành công"||r.Request.Status== "Yêu cầu bị từ chối"||r.Request.Status== "Kim cương đã niêm phong");
 
             if (employeeId.HasValue)
             {

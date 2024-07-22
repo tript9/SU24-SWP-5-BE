@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vnFPHwD5/dMeRpABjtot9Mly2FbMtzK0ezuq+UY/k/M=",
+  "Hash": "lwjBO6zzhuNieri5DVCrc5YQ0wQN8MyT/jm8Hsbl9vw=",
   "Source": "SWPApp",
   "BasePath": "_content/SWPApp",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "SWPApp\\wwwroot",
       "Source": "SWPApp",
-      "ContentRoot": "D:\\PROJECT-TEST\\wwwroot\\",
+      "ContentRoot": "D:\\SU24-SWP-5-BE\\wwwroot\\",
       "BasePath": "_content/SWPApp",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\PROJECT-TEST\\wwwroot\\homepage.html",
+      "Identity": "D:\\SU24-SWP-5-BE\\wwwroot\\homepage.html",
       "SourceId": "SWPApp",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\PROJECT-TEST\\wwwroot\\",
+      "ContentRoot": "D:\\SU24-SWP-5-BE\\wwwroot\\",
       "BasePath": "_content/SWPApp",
       "RelativePath": "homepage.html",
       "AssetKind": "All",
@@ -34,6 +34,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\homepage.html"
+    },
+    {
+      "Identity": "D:\\SU24-SWP-5-BE\\wwwroot\\index.html",
+      "SourceId": "SWPApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\SU24-SWP-5-BE\\wwwroot\\",
+      "BasePath": "_content/SWPApp",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
     }
   ]
 }

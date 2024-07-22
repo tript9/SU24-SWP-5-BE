@@ -21,7 +21,7 @@ namespace SWPApp.Controllers.StaffClient
         public async Task<IActionResult> GetPaidRequests()
         {
             var requests = await _context.Requests
-                .Where(r => r.Status == "Đã thanh toán")
+                .Where(r => r.Status == "Đã thanh toán" )
                 .Include(r => r.Customer)
                 .Include(r => r.Employee)
                 .ToListAsync();
@@ -33,7 +33,7 @@ namespace SWPApp.Controllers.StaffClient
 public async Task<IActionResult> GetProcessingRequests([FromQuery] int? employeeId)
 {
     var query = _context.Requests
-        .Where(r => r.Status == "Đã nhận kim cương và đang xử lí" )
+        .Where(r => r.Status == "Đã nhận kim cương và đang xử lí")
         .Include(r => r.Customer)
         .Include(r => r.Employee)
         .AsQueryable();
@@ -47,6 +47,16 @@ public async Task<IActionResult> GetProcessingRequests([FromQuery] int? employee
 
     return Ok(requests ?? new List<Request>());
 }
+[HttpGet("history/sealed")]
+        public async Task<IActionResult> GetSealedRequests()
+        {
+            var requests = await _context.Requests
+                .Where(r => r.Status == "Kim cương đã niêm phong")
+                .Include(r => r.Customer)
+                .Include(r => r.Employee)
+                .ToListAsync();
 
+            return Ok(requests ?? new List<Request>());
+        }
     }
 }
