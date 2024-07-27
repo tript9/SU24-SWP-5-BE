@@ -177,7 +177,7 @@ namespace SWPApp.Controllers.CustomerClient
                 customer.Status = true; // Login successful, set status to true
                 await _context.SaveChangesAsync();
 
-                return Ok(new { Message = "Customer login successful.", LoginToken = loginToken, Role = 1, customer.CustomerName, customer.CustomerId });
+                return Ok(new { Message = "Customer login successful.", LoginToken = loginToken, Role = 1, customer.CustomerName, customer.CustomerId, customer.IDCard,customer.PhoneNumber ,customer.Address });
             }
 
             if (employee != null )
@@ -213,7 +213,7 @@ namespace SWPApp.Controllers.CustomerClient
                     roleValue = (int)employee.Role; // Use the actual role value for any other roles
                 }
 
-                return Ok(new { Message = roleSpecificMessage, LoginToken = loginToken, Role = roleValue, employee.EmployeeName, employee.EmployeeId });
+                return Ok(new { Message = roleSpecificMessage, LoginToken = loginToken, Role = roleValue, employee.EmployeeName, employee.EmployeeId, employee.ServiceId });
             }
 
             return Unauthorized("Invalid email or password");

@@ -16,7 +16,7 @@ namespace SWPApp.Controllers
             public int? ResultId { get; set; }
             public int DiamondId { get; set; }
             public int RequestId { get; set; }
-            public string DiamondOrigin { get; set; }
+            public string DiamondOrigin { get; set;}
             public string Shape { get; set; }
             public string Measurements { get; set; }
             public decimal CaratWeight { get; set; }
