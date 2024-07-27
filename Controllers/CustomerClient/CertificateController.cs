@@ -53,5 +53,6 @@ namespace SWPApp.Controllers
 
             return File(pdfBytes, "application/pdf", "certificate.pdf");
         }
+
     }
 }

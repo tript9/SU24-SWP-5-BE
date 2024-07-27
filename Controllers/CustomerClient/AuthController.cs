@@ -35,6 +35,12 @@ namespace SWPApp.Controllers.CustomerClient
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+        [Required]
+        public string? PhoneNumber { get; set; }
+        [Required]
+        public string? IDCard { get; set; }
+        [Required]
+        public string? Address { get; set; }
 
         [Required]
         [MinLength(8, ErrorMessage = "The password must be at least 8 characters long.")]
@@ -65,7 +71,6 @@ namespace SWPApp.Controllers.CustomerClient
             _emailService = emailService;
             _logger = logger;
         }
-
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
@@ -89,7 +94,10 @@ namespace SWPApp.Controllers.CustomerClient
                 Password = hashedPassword,
                 Status = false, // Initially not confirmed
                 ConfirmationToken = confirmationCode,
-                ConfirmationTokenExpires = DateTime.UtcNow.AddDays(1) // Code expires in 1 day
+                ConfirmationTokenExpires = DateTime.UtcNow.AddDays(1), // Code expires in 1 day
+                PhoneNumber = model.PhoneNumber, // Add PhoneNumber
+                IDCard = model.IDCard, // Add IDCard
+                Address = model.Address // Add Address
             };
 
             _context.Customers.Add(customer);
@@ -101,6 +109,7 @@ namespace SWPApp.Controllers.CustomerClient
 
             return Ok("Please check your email for the confirmation code.");
         }
+
         [HttpPost("confirm-email")]
         public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmEmailModel model)
         {

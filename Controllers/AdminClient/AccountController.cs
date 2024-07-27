@@ -19,60 +19,44 @@ namespace SWPApp.Controllers.AdminClient
             _context = context;
         }
 
-        // DTO for Employee
+      
         public class EmployeeDTO
         {
-            [Required]
+           
             public string EmployeeName { get; set; }
-
-            [Required]
+       
             [EmailAddress]
             public string Email { get; set; }
-
-            [Required]
+         
             public string Password { get; set; }
-
+            public string ServiceId { get; set; }
             public string Phone { get; set; }
         }
 
-        // Create Employee
-        [HttpPost("create-employee")]
-        public async Task<IActionResult> CreateEmployee([FromBody] EmployeeDTO employeeDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// Create Employee
+        //[HttpPost("create-employee")]
+        //public async Task<IActionResult> CreateEmployee([FromBody] EmployeeDTO employeeDto)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            var employee = new Employee
-            {
-                EmployeeName = employeeDto.EmployeeName,
-                Email = employeeDto.Email,
-                Password = employeeDto.Password, // No hashing
-                Phone = employeeDto.Phone
-            };
+        //    var employee = new Employee
+        //    {
+        //        EmployeeName = employeeDto.EmployeeName,
+        //        Email = employeeDto.Email,
+        //        Password = employeeDto.Password, // No hashing
+        //        Phone = employeeDto.Phone
+        //    };
 
-            _context.Employees.Add(employee);
-            await _context.SaveChangesAsync();
+        //    _context.Employees.Add(employee);
+        //    await _context.SaveChangesAsync();
 
-            return Ok(employee);
-        }
+        //    return Ok(employee);
+        //}
 
-        // Create Customer
-        [HttpPost("create-customer")]
-        public async Task<IActionResult> CreateCustomer([FromBody] Customer customer)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _context.Customers.Add(customer);
-            await _context.SaveChangesAsync();
-
-            return Ok(customer);
-        }
-
+      
         // Get Employee by ID
         [HttpGet("employee/{employeeid}")]
         public async Task<IActionResult> GetEmployee(int employeeid)
@@ -100,33 +84,37 @@ namespace SWPApp.Controllers.AdminClient
 
             return Ok(customer);
         }
+        [HttpPut("update-employee/{employeeId}")]
+        public async Task<IActionResult> UpdateEmployee(int employeeId, [FromBody] EmployeeDTO updatedEmployeeDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        // Update Employee
-        [HttpPut("update-employee/{employeeid}")]
-        public async Task<IActionResult> UpdateEmployee(int employeeid, [FromBody] Employee updatedEmployee)       {
-            
-
-            var employee = await _context.Employees.FindAsync(employeeid);
+            var employee = await _context.Employees.FindAsync(employeeId);
             if (employee == null)
             {
                 return NotFound();
             }
 
-            employee.EmployeeName = updatedEmployee.EmployeeName;
-            employee.Email = updatedEmployee.Email;
-            if (!string.IsNullOrEmpty(updatedEmployee.Password))
+            employee.EmployeeName = updatedEmployeeDto.EmployeeName;
+            employee.Email = updatedEmployeeDto.Email;
+            if (!string.IsNullOrEmpty(updatedEmployeeDto.Password))
             {
-                employee.Password = updatedEmployee.Password; // No hashing
+                employee.Password = updatedEmployeeDto.Password; // No hashing, as requested
             }
-            employee.Phone = updatedEmployee.Phone;
-            employee.Role = updatedEmployee.Role;
-            employee.Status = updatedEmployee.Status;
+            employee.ServiceId = updatedEmployeeDto.ServiceId;
+            employee.Phone = updatedEmployeeDto.Phone;
 
             _context.Employees.Update(employee);
             await _context.SaveChangesAsync();
 
             return Ok(employee);
         }
+
+
+
 
         // Update Customer
         [HttpPut("update-customer/{id}")]
@@ -167,7 +155,7 @@ namespace SWPApp.Controllers.AdminClient
             var employee = await _context.Employees.FindAsync(employeeid);
             if (employee == null)
             {
-                return NotFound();
+                return BadRequest();
             }
 
             _context.Employees.Remove(employee);

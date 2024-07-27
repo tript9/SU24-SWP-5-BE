@@ -85,16 +85,21 @@ namespace SWPApp.Controllers
                 existingService.Description = updatedService.Description;
             }
 
-            if (updatedService.ServicePrice != 0)
+            if (updatedService.ServicePrice >= 0)
             {
                 existingService.ServicePrice = updatedService.ServicePrice;
             }
-
+            else{
+                existingService.ServicePrice = 0-updatedService.ServicePrice;
+            }
             if (updatedService.Duration != 0)
             {
                 existingService.Duration = updatedService.Duration;
             }
-
+            else
+            {
+                existingService.Duration = 0-updatedService.Duration;
+            }
             _context.Entry(existingService).State = EntityState.Modified;
 
             try

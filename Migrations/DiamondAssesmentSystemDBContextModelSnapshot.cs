@@ -152,10 +152,15 @@ namespace SWPApp.Migrations
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
+                    b.Property<string>("ServiceId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.HasKey("EmployeeId");
+
+                    b.HasIndex("ServiceId");
 
                     b.ToTable("Employees");
                 });
@@ -379,6 +384,16 @@ namespace SWPApp.Migrations
                     b.Navigation("Request");
                 });
 
+            modelBuilder.Entity("SWPApp.Models.Employee", b =>
+                {
+                    b.HasOne("SWPApp.Models.Service", "Service")
+                        .WithMany("Employees")
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Service");
+                });
+
             modelBuilder.Entity("SWPApp.Models.Feedback", b =>
                 {
                     b.HasOne("SWPApp.Models.Customer", "Customer")
@@ -438,6 +453,11 @@ namespace SWPApp.Migrations
                         .IsRequired();
 
                     b.Navigation("Service");
+                });
+
+            modelBuilder.Entity("SWPApp.Models.Service", b =>
+                {
+                    b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618
         }

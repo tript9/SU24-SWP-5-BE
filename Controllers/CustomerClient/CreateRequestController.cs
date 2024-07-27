@@ -13,17 +13,16 @@ namespace SWPApp.Controllers.CustomerClient
         public class CreateRequestDto
         {
             public int CustomerId { get; set; }
-            public string? PhoneNumber { get; set; }
-            public string? IDCard { get; set; }
-            public string? Address { get; set; }
             public string ServiceId { get; set; }
         }
+
         private readonly DiamondAssesmentSystemDBContext _context;
 
         public CreateRequestsController(DiamondAssesmentSystemDBContext context)
         {
             _context = context;
         }
+
         //Tạo đơn
         [HttpPost("CreateRequest")]
         public async Task<IActionResult> CreateRequest([FromBody] CreateRequestDto requestDto)
@@ -42,20 +41,15 @@ namespace SWPApp.Controllers.CustomerClient
                 return BadRequest("Invalid CustomerId");
             }
 
-            // Cập nhật thông tin Customer            
-            customer.PhoneNumber = requestDto.PhoneNumber;
-            customer.IDCard = requestDto.IDCard;
-            customer.Address = requestDto.Address;
-
             // Chỉ chèn một số trường cụ thể từ request
             var newRequest = new Request
             {
                 CustomerId = requestDto.CustomerId,
                 RequestDate = DateTime.Now,
-                Email = null, // Or set this to a default value or another field
-                PhoneNumber = requestDto.PhoneNumber,
-                IDCard = requestDto.IDCard,
-                Address = requestDto.Address,
+                Email = customer.Email, // Take from customer
+                PhoneNumber = customer.PhoneNumber, // Take from customer
+                IDCard = customer.IDCard, // Take from customer
+                Address = customer.Address, // Take from customer
                 ServiceId = requestDto.ServiceId,
                 Status = "Chờ thanh toán" // Hoặc bất kỳ trạng thái mặc định nào
             };
@@ -79,7 +73,6 @@ namespace SWPApp.Controllers.CustomerClient
             });
         }
 
-
         //Search By RequestId
         [HttpGet("{id}")]
         public async Task<IActionResult> GetRequestById(int id)
@@ -92,11 +85,6 @@ namespace SWPApp.Controllers.CustomerClient
             }
 
             return Ok(request);
-            
         }
-        //List all request if (Staff are login)
-
-
-        
     }
 }

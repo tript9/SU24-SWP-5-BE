@@ -50,5 +50,25 @@ namespace SWPApp.Controllers.CustomerClient
             // Return an empty array if no requests are found
             return Ok(requestsDto.Any() ? requestsDto : new List<object>());
         }
+
+        [HttpPut("CustomerDiamondReceived/{requestId}/{customerId}")]
+        public async Task<IActionResult> UpdateStatusToDiamondReceived(int requestId, int customerId)
+        {
+            var request = await _context.Requests
+                .Where(r => r.RequestId == requestId && r.CustomerId == customerId)
+                .FirstOrDefaultAsync();
+
+            if (request == null)
+            {
+                return NotFound("Request not found or does not belong to the specified customer.");
+            }
+
+            request.Status = "Đã nhận kim cương";
+
+            _context.Requests.Update(request);
+            await _context.SaveChangesAsync();
+
+            return Ok(request);
+        }
     }
 }

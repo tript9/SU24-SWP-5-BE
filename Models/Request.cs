@@ -22,9 +22,9 @@ namespace SWPApp.Models
 
         public string? Address { get; set; }
 
-        public string ?ServiceId { get; set; }
+        public string? ServiceId { get; set; } // Add ServiceId property
 
-        public string?Status { get; set; }
+        public string? Status { get; set; }
 
         public Customer Customer { get; set; }
 

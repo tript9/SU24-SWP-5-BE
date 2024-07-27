@@ -9,7 +9,6 @@ public class DiamondAssesmentSystemDBContext : DbContext
 
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Employee> Employees { get; set; }
-
     public DbSet<Request> Requests { get; set; }
     public DbSet<Service> Services { get; set; }
     public DbSet<ServiceDetail> ServiceDetails { get; set; }
@@ -47,5 +46,12 @@ public class DiamondAssesmentSystemDBContext : DbContext
             .HasOne(f => f.Customer)
             .WithMany()
             .HasForeignKey(f => f.CustomerId);
+
+        // Add the relationship between Employee and Service
+        modelBuilder.Entity<Employee>()
+            .HasOne(e => e.Service)
+            .WithMany(s => s.Employees)
+            .HasForeignKey(e => e.ServiceId)
+            .OnDelete(DeleteBehavior.SetNull); // Configure the delete behavior to set null
     }
 }

@@ -10,5 +10,6 @@ namespace SWPApp.Models
         public string Description { get; set; }
         public int ServicePrice { get; set; } 
         public int Duration { get; set; }
+        public ICollection<Employee> Employees { get; set; }
     }
 }

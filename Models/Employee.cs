@@ -9,6 +9,12 @@ namespace SWPApp.Models
         [Key]
         public int EmployeeId { get; set; }
 
+        // Add the ServiceId foreign key property
+        public string? ServiceId { get; set; }
+
+        // Add the navigation property for Service
+        public Service Service { get; set; }
+
         [Required]
         public string EmployeeName { get; set; }
 

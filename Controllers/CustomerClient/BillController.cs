@@ -23,7 +23,7 @@ namespace SWPApp.Controllers
             public string ServiceType { get; set; }
             public decimal ServicePrice { get; set; }
             public string Status { get; set; }
-            public int PaymentMethod { get; set; }
+      
         }
 
         [HttpGet("{customerId}")]

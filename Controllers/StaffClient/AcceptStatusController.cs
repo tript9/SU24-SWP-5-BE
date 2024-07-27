@@ -16,25 +16,38 @@ namespace SWPApp.Controllers.StaffClient
             _context = context;
         }
 
-        // Accept Request sau khi nhận kim cương thì staff chuyển status thành đã nhận và đang xử lí
         [HttpPut("Update-status-when-received-diamond/{requestId}/{employeeId}")]
         public async Task<IActionResult> UpdateStatusWhenReceivedDiamond(int requestId, int employeeId)
         {
             var request = await _context.Requests.FindAsync(requestId);
-
             if (request == null)
             {
                 return NotFound();
             }
 
+            var employee = await _context.Employees.FindAsync(employeeId);
+            if (employee == null)
+            {
+                return BadRequest($"Employee with ID {employeeId} does not exist.");
+            }
+
             request.Status = "Đã nhận kim cương và đang xử lí";
-            request.EmployeeId = employeeId; // Assuming there's an EmployeeId field in the Request model
+            request.EmployeeId = employeeId;
 
             _context.Requests.Update(request);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                // Log the exception details (ex) as needed
+                return StatusCode(500, "An error occurred while updating the request.");
+            }
 
             return Ok(request);
         }
+
 
         // Sau khi cus nhận kim cương thì staff update status="khách hàng đã nhận kim cương" (ở cuspage)="đã nhận hàng"
         [HttpPut("Update-status-done/{requestid}/{employeeId}")]
