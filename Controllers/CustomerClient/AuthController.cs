@@ -150,7 +150,10 @@ namespace SWPApp.Controllers.CustomerClient
                 LoginToken = loginToken,
                 Role = 1,
                 CustomerId = customer.CustomerId,
-                CustomerName = customer.CustomerName
+                CustomerName = customer.CustomerName,
+                CustomerPhone=customer.PhoneNumber,
+                CustomerIDcard=customer.IDCard,
+                CustomerAdress=customer.Address
             });
         }
 

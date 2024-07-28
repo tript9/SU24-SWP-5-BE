@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SWPApp.Models;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace SWPApp.Controllers
 {
@@ -16,17 +18,20 @@ namespace SWPApp.Controllers
             public int? ResultId { get; set; }
             public int DiamondId { get; set; }
             public int RequestId { get; set; }
-            public string DiamondOrigin { get; set;}
-            public string Shape { get; set; }
-            public string Measurements { get; set; }
-            public decimal CaratWeight { get; set; }
-            public string Color { get; set; }
-            public string Clarity { get; set; }
-            public string Cut { get; set; }
-            public string Proportions { get; set; }
-            public string Polish { get; set; }
-            public string Symmetry { get; set; }
-            public string Fluorescence { get; set; }
+            public string? DiamondOrigin { get; set; }
+            public string? Shape { get; set; }
+            public string? Measurements { get; set; }
+            public decimal? CaratWeight { get; set; }
+            public string? Color { get; set; }
+            public string? Clarity { get; set; }
+            public string? Cut { get; set; }
+            public string? Proportions { get; set; }
+            public string? Polish { get; set; }
+            public string? Symmetry { get; set; }
+            public string? Fluorescence { get; set; }
+            public string? Certification { get; set; }
+            public decimal? Price { get; set; }
+            public string? Comments { get; set; }
         }
 
         private readonly DiamondAssesmentSystemDBContext _context;
@@ -63,6 +68,9 @@ namespace SWPApp.Controllers
             result.Polish = updatedResultDto.Polish;
             result.Symmetry = updatedResultDto.Symmetry;
             result.Fluorescence = updatedResultDto.Fluorescence;
+            result.Certification = updatedResultDto.Certification;
+            result.Price = updatedResultDto.Price;
+            result.Comments = updatedResultDto.Comments;
 
             // Find the related Request and update its status
             var request = await _context.Requests.FirstOrDefaultAsync(r => r.RequestId == result.RequestId);
@@ -75,7 +83,6 @@ namespace SWPApp.Controllers
 
             return Ok(new { Message = "Result updated successfully. Chờ xác nhận", ResultId = result.ResultId });
         }
-
 
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] ResultDTO resultDto)
@@ -114,7 +121,10 @@ namespace SWPApp.Controllers
                 Proportions = resultDto.Proportions,
                 Polish = resultDto.Polish,
                 Symmetry = resultDto.Symmetry,
-                Fluorescence = resultDto.Fluorescence
+                Fluorescence = resultDto.Fluorescence,
+                Certification = resultDto.Certification,
+                Price = resultDto.Price,
+                Comments = resultDto.Comments
             };
 
             // Add the Result to the database
@@ -128,34 +138,42 @@ namespace SWPApp.Controllers
             return Ok(new { Message = "Result created successfully. Chờ xác nhận", ResultId = result.ResultId });
         }
 
-        // Get Result by ResultId action
-        [HttpGet("get/{resultId}")]
-        public async Task<IActionResult> GetByResultId(int resultId)
+        // Get Results by ServiceId action
+        [HttpGet("get-by-serviceid/{serviceId}")]
+        public async Task<IActionResult> GetByServiceId(string serviceId)
         {
-            var result = await _context.Results.FirstOrDefaultAsync(r => r.ResultId == resultId);
-            if (result == null)
+            var results = await _context.Results
+                .Include(r => r.Request)
+                .Where(r => r.Request.ServiceId == serviceId)
+                .ToListAsync();
+
+            if (results == null || !results.Any())
             {
-                return NotFound("Result not found for the specified ResultId.");
+                return NotFound("No results found for the specified ServiceId.");
             }
 
-            var resultDto = new ResultDTO
+            var resultDtos = results.Select(result => new ResultDTO
             {
                 ResultId = result.ResultId,
+                DiamondId = result.DiamondId ?? 0, // Default to 0 if null
                 RequestId = result.RequestId,
                 DiamondOrigin = result.DiamondOrigin,
                 Shape = result.Shape,
                 Measurements = result.Measurements,
-                CaratWeight = result.CaratWeight,
+                CaratWeight = result.CaratWeight ?? 0, // Default to 0 if null
                 Color = result.Color,
                 Clarity = result.Clarity,
                 Cut = result.Cut,
                 Proportions = result.Proportions,
                 Polish = result.Polish,
                 Symmetry = result.Symmetry,
-                Fluorescence = result.Fluorescence
-            };
+                Fluorescence = result.Fluorescence,
+                Certification = result.Certification,
+                Price = result.Price ?? 0, // Default to 0 if null
+                Comments = result.Comments
+            }).ToList();
 
-            return Ok(resultDto);
+            return Ok(resultDtos);
         }
 
         // Delete Result by RequestId action

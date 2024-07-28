@@ -47,6 +47,9 @@ namespace SWPApp.Controllers.AdminClient
                     r.Polish,
                     r.Symmetry,
                     r.Fluorescence,
+                    r.Certification,
+                    r.Price,
+                    r.Comments,
                     RequestStatus = r.Request.Status // Include the status in the response
                 })
                 .ToListAsync();

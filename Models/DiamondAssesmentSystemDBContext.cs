@@ -47,7 +47,6 @@ public class DiamondAssesmentSystemDBContext : DbContext
             .WithMany()
             .HasForeignKey(f => f.CustomerId);
 
-        // Add the relationship between Employee and Service
         modelBuilder.Entity<Employee>()
             .HasOne(e => e.Service)
             .WithMany(s => s.Employees)
