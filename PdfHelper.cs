@@ -16,22 +16,20 @@ public static class PdfHelper
         graphics.DrawRectangle(borderPen, 20, 20, page.Width - 40, page.Height - 40);
 
         // Attempt to add a logo at the top
-        //string logoPath = Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\MSI VN\\Downloads", "logo.jpg");
-        //if (File.Exists(logoPath))
-        //{
-        //    var logoImage = XImage.FromFile(logoPath);
-        //    graphics.DrawImage(logoImage, page.Width / 2 - 50, 30, 100, 100);
-        //}
-        //else
-        //{
-        //    graphics.DrawString("Logo Not Found", new XFont("Verdana", 12, XFontStyle.Bold), XBrushes.Red, new XRect(50, 30, 100, 100), XStringFormats.TopLeft);
-        //}
+        string logoPath = Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\MSI VN\\Downloads", "logo.jpg");
+        if (File.Exists(logoPath))
+        {
+            var logoImage = XImage.FromFile(logoPath);
+            graphics.DrawImage(logoImage, page.Width / 2 - 50, 30, 100, 100);
+        }
+        else
+        {
+            graphics.DrawString("Logo Not Found", new XFont("Verdana", 12, XFontStyle.Bold), XBrushes.Red, new XRect(50, 30, 100, 100), XStringFormats.TopLeft);
+        }
 
         var titleFont = new XFont("Verdana", 24, XFontStyle.Bold);
         var subtitleFont = new XFont("Verdana", 18, XFontStyle.Bold);
         var regularFont = new XFont("Verdana", 14, XFontStyle.Regular);
-        var smallFont = new XFont("Verdana", 12, XFontStyle.Regular);
-       
 
         // Draw subtitle
         graphics.DrawString("Diamond Certificate", subtitleFont, XBrushes.DarkBlue, new XRect(0, 180, page.Width, 50), XStringFormats.Center);
@@ -54,9 +52,23 @@ public static class PdfHelper
         graphics.DrawString($"Symmetry: {result.Symmetry}", regularFont, XBrushes.Black, new XRect(50, 590, page.Width - 100, 30), XStringFormats.TopLeft);
         graphics.DrawString($"Fluorescence: {result.Fluorescence}", regularFont, XBrushes.Black, new XRect(50, 620, page.Width - 100, 30), XStringFormats.TopLeft);
 
+        // Add additional premium package attributes
+        if (!string.IsNullOrWhiteSpace(result.Certification))
+        {
+            graphics.DrawString($"Certification: {result.Certification}", regularFont, XBrushes.Black, new XRect(50, 650, page.Width - 100, 30), XStringFormats.TopLeft);
+        }
+        if (result.Price.HasValue)
+        {
+            graphics.DrawString($"Price: ${result.Price}", regularFont, XBrushes.Black, new XRect(50, 680, page.Width - 100, 30), XStringFormats.TopLeft);
+        }
+        if (!string.IsNullOrWhiteSpace(result.Comments))
+        {
+            graphics.DrawString($"Comments: {result.Comments}", regularFont, XBrushes.Black, new XRect(50, 710, page.Width - 100, 30), XStringFormats.TopLeft);
+        }
+
         // Add signature area
-        graphics.DrawString("Authorized Signature:", regularFont, XBrushes.Black, new XRect(50, 680, page.Width - 100, 30), XStringFormats.TopLeft);
-        graphics.DrawLine(borderPen, 200, 710, 500, 710);
+        graphics.DrawString("Authorized Signature:", regularFont, XBrushes.Black, new XRect(50, 740, page.Width - 100, 30), XStringFormats.TopLeft);
+        graphics.DrawLine(borderPen, 200, 770, 500, 770);
 
         using (MemoryStream ms = new MemoryStream())
         {

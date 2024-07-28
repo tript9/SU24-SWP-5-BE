@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\SU24-SWP-5-BE\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\pdfhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:pdfhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\models\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:models\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -53,10 +57,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\controllers\\customerclient\\createrequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:controllers\\customerclient\\createrequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\pdfhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|solutionrelative:pdfhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A7E97B6D-A51D-42DD-9D91-52598D222689}|SWPApp.csproj|d:\\su24-swp-5-be\\controllers\\customerclient\\certificatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -114,20 +114,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ResultController.cs",
-              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\StaffClient\\ResultController.cs",
-              "RelativeDocumentMoniker": "Controllers\\StaffClient\\ResultController.cs",
-              "ToolTip": "D:\\SU24-SWP-5-BE\\Controllers\\StaffClient\\ResultController.cs",
-              "RelativeToolTip": "Controllers\\StaffClient\\ResultController.cs",
-              "ViewState": "AQIAAHkAAAAAAAAAAAAqwI0AAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T15:49:27.506Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "ListAllResultController.cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\AdminClient\\ListAllResultController.cs",
               "RelativeDocumentMoniker": "Controllers\\AdminClient\\ListAllResultController.cs",
@@ -135,12 +122,11 @@
               "RelativeToolTip": "Controllers\\AdminClient\\ListAllResultController.cs",
               "ViewState": "AQIAAEAAAAAAAAAAAAAwwDIAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T12:39:49.601Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-26T12:39:49.601Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -148,12 +134,11 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-07-26T13:00:07.834Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-26T13:00:07.834Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "HistoryRequestController(Staff).cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\StaffClient\\HistoryRequestController(Staff).cs",
               "RelativeDocumentMoniker": "Controllers\\StaffClient\\HistoryRequestController(Staff).cs",
@@ -161,12 +146,11 @@
               "RelativeToolTip": "Controllers\\StaffClient\\HistoryRequestController(Staff).cs",
               "ViewState": "AQIAACQAAAAAAAAAAAAYwB0AAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T13:10:46.361Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-26T13:10:46.361Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AcceptStatusController.cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\StaffClient\\AcceptStatusController.cs",
               "RelativeDocumentMoniker": "Controllers\\StaffClient\\AcceptStatusController.cs",
@@ -174,12 +158,11 @@
               "RelativeToolTip": "Controllers\\StaffClient\\AcceptStatusController.cs",
               "ViewState": "AQIAADMAAAAAAAAAAAAYwB4AAABUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T13:06:59.302Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-26T13:06:59.302Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Request.cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Models\\Request.cs",
               "RelativeDocumentMoniker": "Models\\Request.cs",
@@ -187,25 +170,49 @@
               "RelativeToolTip": "Models\\Request.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAAuwCEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T14:31:23.07Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-26T14:31:23.07Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Result.cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Models\\Result.cs",
               "RelativeDocumentMoniker": "Models\\Result.cs",
               "ToolTip": "D:\\SU24-SWP-5-BE\\Models\\Result.cs",
               "RelativeToolTip": "Models\\Result.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAmwCQAAAAAAAAA",
+              "ViewState": "AQIAABcAAAAAAAAAAAAzwCIAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-28T03:34:16.529Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
+              "Title": "PdfHelper.cs",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\PdfHelper.cs",
+              "RelativeDocumentMoniker": "PdfHelper.cs",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\PdfHelper.cs",
+              "RelativeToolTip": "PdfHelper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAE8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-27T05:57:55.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ResultController.cs",
+              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\StaffClient\\ResultController.cs",
+              "RelativeDocumentMoniker": "Controllers\\StaffClient\\ResultController.cs",
+              "ToolTip": "D:\\SU24-SWP-5-BE\\Controllers\\StaffClient\\ResultController.cs",
+              "RelativeToolTip": "Controllers\\StaffClient\\ResultController.cs",
+              "ViewState": "AQIAAHkAAAAAAAAAAAAqwI0AAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-27T15:49:27.506Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "DiamondAssesmentSystemDBContext.cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Models\\DiamondAssesmentSystemDBContext.cs",
               "RelativeDocumentMoniker": "Models\\DiamondAssesmentSystemDBContext.cs",
@@ -213,12 +220,11 @@
               "RelativeToolTip": "Models\\DiamondAssesmentSystemDBContext.cs",
               "ViewState": "AQIAACMAAAAAAAAAAADwvy8AAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T14:32:08.469Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-26T14:32:08.469Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\CustomerClient\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\CustomerClient\\AuthController.cs",
@@ -226,12 +232,11 @@
               "RelativeToolTip": "Controllers\\CustomerClient\\AuthController.cs",
               "ViewState": "AQIAAIoAAAAAAAAAAAAqwJsAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T07:00:34.13Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-26T07:00:34.13Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "HistoryofRequest(Customer).cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\CustomerClient\\HistoryofRequest(Customer).cs",
               "RelativeDocumentMoniker": "Controllers\\CustomerClient\\HistoryofRequest(Customer).cs",
@@ -243,7 +248,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "AccountController.cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\AdminClient\\AccountController.cs",
               "RelativeDocumentMoniker": "Controllers\\AdminClient\\AccountController.cs",
@@ -255,7 +260,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "ResultClientController.cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\CustomerClient\\ResultClientController.cs",
               "RelativeDocumentMoniker": "Controllers\\CustomerClient\\ResultClientController.cs",
@@ -267,7 +272,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "CreateRequestController.cs",
               "DocumentMoniker": "D:\\SU24-SWP-5-BE\\Controllers\\CustomerClient\\CreateRequestController.cs",
               "RelativeDocumentMoniker": "Controllers\\CustomerClient\\CreateRequestController.cs",
@@ -276,18 +281,6 @@
               "ViewState": "AQIAAC0AAAAAAAAAAAAowA8AAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-26T07:00:37.849Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "PdfHelper.cs",
-              "DocumentMoniker": "D:\\SU24-SWP-5-BE\\PdfHelper.cs",
-              "RelativeDocumentMoniker": "PdfHelper.cs",
-              "ToolTip": "D:\\SU24-SWP-5-BE\\PdfHelper.cs",
-              "RelativeToolTip": "PdfHelper.cs",
-              "ViewState": "AQIAAC4AAAAAAAAAAADwv0MAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T05:57:55.968Z"
             },
             {
               "$type": "Document",
