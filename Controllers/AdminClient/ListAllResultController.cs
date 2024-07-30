@@ -19,37 +19,39 @@ namespace SWPApp.Controllers.AdminClient
             _context = context;
         }
 
-        [HttpGet("list-results")]
-        public async Task<ActionResult<IEnumerable<object>>> ListResults([FromQuery] int? employeeId = null)
+        [HttpGet("list-results-Admin")]
+        public async Task<ActionResult<IEnumerable<object>>> ListResults()
         {
             IQueryable<Result> query = _context.Results
-                .Where(r => r.Request.Status == "Chờ xác nhận" || r.Request.Status == "Kiểm định thành công"||r.Request.Status== "Yêu cầu bị từ chối"||r.Request.Status== "Kim cương đã niêm phong");
-
-            if (employeeId.HasValue)
-            {
-                query = query.Where(r => r.Request.EmployeeId == employeeId.Value);
-            }
+                .Where(r => r.Request.Status == "Chờ xác nhận" ||
+                            r.Request.Status == "Kiểm định thành công" ||
+                            r.Request.Status == "Yêu cầu bị từ chối" ||
+                            r.Request.Status == "Kim cương đã niêm phong"||
+                            r.Request.Status== "Đã nhận kim cương")                           
+                            ;
 
             var results = await query
                 .Select(r => new
                 {
+                    r.Request.EmployeeId, // Include EmployeeId in the response
+                    r.Request.Employee.ServiceId, // Include ServiceId in the response
                     r.ResultId,
                     r.DiamondId,
                     r.RequestId,
-                    r.DiamondOrigin,
-                    r.Shape,
-                    r.Measurements,
-                    r.CaratWeight,
-                    r.Color,
-                    r.Clarity,
-                    r.Cut,
-                    r.Proportions,
-                    r.Polish,
-                    r.Symmetry,
-                    r.Fluorescence,
-                    r.Certification,
-                    r.Price,
-                    r.Comments,
+                    DiamondOrigin = r.DiamondOrigin ?? "none",
+                    Shape = r.Shape ?? "none",
+                    Measurements = r.Measurements ?? "none",
+                    CaratWeight = r.CaratWeight ?? 0,
+                    Color = r.Color ?? "none",
+                    Clarity = r.Clarity ?? "none",
+                    Cut = r.Cut ?? "none",
+                    Proportions = r.Proportions ?? "none",
+                    Polish = r.Polish ?? "none",
+                    Symmetry = r.Symmetry ?? "none",
+                    Fluorescence = r.Fluorescence ?? "none",
+                    Certification = r.Certification ?? "none",
+                    Price = r.Price ?? 0,
+                    Comments = r.Comments ?? "none",
                     RequestStatus = r.Request.Status // Include the status in the response
                 })
                 .ToListAsync();
@@ -57,7 +59,7 @@ namespace SWPApp.Controllers.AdminClient
             return Ok(results);
         }
 
-        // Accept status = "kiểm định thành công "
+        // Accept status = "Kiểm định thành công"
         [HttpPut("update-request-status/{requestid}")]
         public async Task<IActionResult> UpdateRequestStatus(int requestid)
         {

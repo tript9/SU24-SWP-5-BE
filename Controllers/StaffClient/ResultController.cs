@@ -18,20 +18,20 @@ namespace SWPApp.Controllers
             public int? ResultId { get; set; }
             public int DiamondId { get; set; }
             public int RequestId { get; set; }
-            public string? DiamondOrigin { get; set; }
-            public string? Shape { get; set; }
-            public string? Measurements { get; set; }
+            public string? DiamondOrigin { get; set; } = "none";
+            public string? Shape { get; set; } = "none";
+            public string? Measurements { get; set; } = "none";
             public decimal? CaratWeight { get; set; }
-            public string? Color { get; set; }
-            public string? Clarity { get; set; }
-            public string? Cut { get; set; }
-            public string? Proportions { get; set; }
-            public string? Polish { get; set; }
-            public string? Symmetry { get; set; }
-            public string? Fluorescence { get; set; }
-            public string? Certification { get; set; }
+            public string? Color { get; set; } = "none";
+            public string? Clarity { get; set; } = "none";
+            public string? Cut { get; set; } = "none";
+            public string? Proportions { get; set; } = "none";
+            public string? Polish { get; set; } = "none";
+            public string? Symmetry { get; set; } = "none";
+            public string? Fluorescence { get; set; } = "none";
+            public string? Certification { get; set; } = "none";
             public decimal? Price { get; set; }
-            public string? Comments { get; set; }
+            public string? Comments { get; set; } = "none";
         }
 
         private readonly DiamondAssesmentSystemDBContext _context;
@@ -57,20 +57,20 @@ namespace SWPApp.Controllers
 
             // Update the properties of the result
             result.DiamondId = updatedResultDto.DiamondId;
-            result.DiamondOrigin = updatedResultDto.DiamondOrigin;
-            result.Shape = updatedResultDto.Shape;
-            result.Measurements = updatedResultDto.Measurements;
+            result.DiamondOrigin = updatedResultDto.DiamondOrigin ?? "none";
+            result.Shape = updatedResultDto.Shape ?? "none";
+            result.Measurements = updatedResultDto.Measurements ?? "none";
             result.CaratWeight = updatedResultDto.CaratWeight;
-            result.Color = updatedResultDto.Color;
-            result.Clarity = updatedResultDto.Clarity;
-            result.Cut = updatedResultDto.Cut;
-            result.Proportions = updatedResultDto.Proportions;
-            result.Polish = updatedResultDto.Polish;
-            result.Symmetry = updatedResultDto.Symmetry;
-            result.Fluorescence = updatedResultDto.Fluorescence;
-            result.Certification = updatedResultDto.Certification;
+            result.Color = updatedResultDto.Color ?? "none";
+            result.Clarity = updatedResultDto.Clarity ?? "none";
+            result.Cut = updatedResultDto.Cut ?? "none";
+            result.Proportions = updatedResultDto.Proportions ?? "none";
+            result.Polish = updatedResultDto.Polish ?? "none";
+            result.Symmetry = updatedResultDto.Symmetry ?? "none";
+            result.Fluorescence = updatedResultDto.Fluorescence ?? "none";
+            result.Certification = updatedResultDto.Certification ?? "none";
             result.Price = updatedResultDto.Price;
-            result.Comments = updatedResultDto.Comments;
+            result.Comments = updatedResultDto.Comments ?? "none";
 
             // Find the related Request and update its status
             var request = await _context.Requests.FirstOrDefaultAsync(r => r.RequestId == result.RequestId);
@@ -111,20 +111,20 @@ namespace SWPApp.Controllers
             {
                 DiamondId = resultDto.DiamondId,
                 RequestId = resultDto.RequestId,
-                DiamondOrigin = resultDto.DiamondOrigin,
-                Shape = resultDto.Shape,
-                Measurements = resultDto.Measurements,
+                DiamondOrigin = resultDto.DiamondOrigin ?? "none",
+                Shape = resultDto.Shape ?? "none",
+                Measurements = resultDto.Measurements ?? "none",
                 CaratWeight = resultDto.CaratWeight,
-                Color = resultDto.Color,
-                Clarity = resultDto.Clarity,
-                Cut = resultDto.Cut,
-                Proportions = resultDto.Proportions,
-                Polish = resultDto.Polish,
-                Symmetry = resultDto.Symmetry,
-                Fluorescence = resultDto.Fluorescence,
-                Certification = resultDto.Certification,
+                Color = resultDto.Color ?? "none",
+                Clarity = resultDto.Clarity ?? "none",
+                Cut = resultDto.Cut ?? "none",
+                Proportions = resultDto.Proportions ?? "none",
+                Polish = resultDto.Polish ?? "none",
+                Symmetry = resultDto.Symmetry ?? "none",
+                Fluorescence = resultDto.Fluorescence ?? "none",
+                Certification = resultDto.Certification ?? "none",
                 Price = resultDto.Price,
-                Comments = resultDto.Comments
+                Comments = resultDto.Comments ?? "none"
             };
 
             // Add the Result to the database
@@ -157,20 +157,20 @@ namespace SWPApp.Controllers
                 ResultId = result.ResultId,
                 DiamondId = result.DiamondId ?? 0, // Default to 0 if null
                 RequestId = result.RequestId,
-                DiamondOrigin = result.DiamondOrigin,
-                Shape = result.Shape,
-                Measurements = result.Measurements,
+                DiamondOrigin = result.DiamondOrigin ?? "none",
+                Shape = result.Shape ?? "none",
+                Measurements = result.Measurements ?? "none",
                 CaratWeight = result.CaratWeight ?? 0, // Default to 0 if null
-                Color = result.Color,
-                Clarity = result.Clarity,
-                Cut = result.Cut,
-                Proportions = result.Proportions,
-                Polish = result.Polish,
-                Symmetry = result.Symmetry,
-                Fluorescence = result.Fluorescence,
-                Certification = result.Certification,
+                Color = result.Color ?? "none",
+                Clarity = result.Clarity ?? "none",
+                Cut = result.Cut ?? "none",
+                Proportions = result.Proportions ?? "none",
+                Polish = result.Polish ?? "none",
+                Symmetry = result.Symmetry ?? "none",
+                Fluorescence = result.Fluorescence ?? "none",
+                Certification = result.Certification ?? "none",
                 Price = result.Price ?? 0, // Default to 0 if null
-                Comments = result.Comments
+                Comments = result.Comments ?? "none"
             }).ToList();
 
             return Ok(resultDtos);

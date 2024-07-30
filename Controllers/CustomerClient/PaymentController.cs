@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SWPApp.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace SWPApp.Controllers
@@ -14,6 +15,17 @@ namespace SWPApp.Controllers
             public int RequestId { get; set; }
             public int CustomerId { get; set; }
         }
+
+        public class BillModel
+        {
+            public int RequestId { get; set; } // This will act as BillNumber
+            public string CustomerName { get; set; }
+            public DateTime? RequestDate { get; set; }
+            public string ServiceType { get; set; }
+            public int ServicePrice { get; set; }
+            public string Status { get; set; }
+        }
+
         private readonly DiamondAssesmentSystemDBContext _context;
 
         public PaymentController(DiamondAssesmentSystemDBContext context)
@@ -22,37 +34,42 @@ namespace SWPApp.Controllers
         }
 
         // Tôi đã thanh toán
-        [HttpPost("UpdatePaymentStatus")]
+        [HttpPost("UpdatePaymentStatus&Bill")]
         public async Task<IActionResult> UpdatePaymentStatus([FromBody] PaymentDTO paymentDto)
         {
-            var existingRequest = await _context.Requests.FindAsync(paymentDto.RequestId);
+            var existingRequest = await _context.Requests
+                .Include(r => r.Customer)
+                .FirstOrDefaultAsync(r => r.RequestId == paymentDto.RequestId);
 
             if (existingRequest == null)
             {
                 return BadRequest("Invalid RequestId");
             }
 
-            // Assuming ServiceId is always valid and exists
-            var service = await _context.Services.FindAsync(existingRequest.ServiceId);
+            var service = await _context.Services
+                .FirstOrDefaultAsync(s => s.ServiceId == existingRequest.ServiceId);
 
-            // Cập nhật trạng thái của Request thành "Đã thanh toán"
+            if (service == null)
+            {
+                return BadRequest("Invalid ServiceId");
+            }
+
+            // Update the status of the request to "Đã thanh toán"
             existingRequest.Status = "Đã thanh toán";
             await _context.SaveChangesAsync();
 
-            // Xác định mô tả gói dịch vụ dựa trên ServiceId
-            string packageDescription = existingRequest.ServiceId switch
+            // Create the BillModel
+            var bill = new BillModel
             {
-                "1" => "Gói cơ bản",
-                "2" => "Gói nâng cao",
-                "3" => "Gói cao cấp",
-                _ => "Gói không xác định"
+                RequestId = existingRequest.RequestId,
+                CustomerName = existingRequest.Customer.CustomerName,
+                RequestDate = existingRequest.RequestDate,
+                ServiceType = service.ServiceType,
+                ServicePrice = service.ServicePrice,
+                Status = existingRequest.Status
             };
 
-            return Ok(new
-            {
-                Request = existingRequest,
-                PackageDescription = packageDescription
-            });
+            return Ok(bill);
         }
     }
 }
