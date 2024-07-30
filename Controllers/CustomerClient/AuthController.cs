@@ -180,10 +180,20 @@ namespace SWPApp.Controllers.CustomerClient
                 customer.Status = true; // Login successful, set status to true
                 await _context.SaveChangesAsync();
 
-                return Ok(new { Message = "Customer login successful.", LoginToken = loginToken, Role = 1, customer.CustomerName, customer.CustomerId, customer.IDCard,customer.PhoneNumber ,customer.Address });
+                return Ok(new
+                {
+                    Message = "Customer login successful.",
+                    LoginToken = loginToken,
+                    Role = 1,
+                    CustomerId = customer.CustomerId,
+                    CustomerName = customer.CustomerName,
+                    CustomerPhone = customer.PhoneNumber,
+                    CustomerIDCard = customer.IDCard,
+                    CustomerAddress = customer.Address
+                });
             }
 
-            if (employee != null )
+            if (employee != null && BCrypt.Net.BCrypt.Verify(loginModel.Password, employee.Password))
             {
                 var loginToken = GenerateToken();
                 employee.LoginToken = loginToken;
@@ -216,11 +226,20 @@ namespace SWPApp.Controllers.CustomerClient
                     roleValue = (int)employee.Role; // Use the actual role value for any other roles
                 }
 
-                return Ok(new { Message = roleSpecificMessage, LoginToken = loginToken, Role = roleValue, employee.EmployeeName, employee.EmployeeId, employee.ServiceId });
+                return Ok(new
+                {
+                    Message = roleSpecificMessage,
+                    LoginToken = loginToken,
+                    Role = roleValue,
+                    EmployeeId = employee.EmployeeId,
+                    EmployeeName = employee.EmployeeName,
+                    ServiceId = employee.ServiceId
+                });
             }
 
             return Unauthorized("Invalid email or password");
         }
+
 
 
         [HttpPost("forgot-password")]
