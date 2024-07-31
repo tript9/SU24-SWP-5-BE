@@ -193,7 +193,7 @@ namespace SWPApp.Controllers.CustomerClient
                 });
             }
 
-            if (employee != null && BCrypt.Net.BCrypt.Verify(loginModel.Password, employee.Password))
+            if (employee != null && loginModel.Password == employee.Password)
             {
                 var loginToken = GenerateToken();
                 employee.LoginToken = loginToken;
