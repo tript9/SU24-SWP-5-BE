@@ -34,7 +34,7 @@ namespace SWPApp.Controllers
         }
 
         // Tôi đã thanh toán
-        [HttpPost("UpdatePaymentStatus&Bill")]
+        [HttpPost("UpdatePaymentStatus")]
         public async Task<IActionResult> UpdatePaymentStatus([FromBody] PaymentDTO paymentDto)
         {
             var existingRequest = await _context.Requests
