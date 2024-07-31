@@ -115,6 +115,7 @@ namespace SWPApp.Controllers.CustomerClient
             return Ok(new
             {
                 Message = "Profile updated successfully.",
+                Role = 1,
                 CustomerId = customer.CustomerId,
                 CustomerName = customer.CustomerName,
                 CustomerPhone = customer.PhoneNumber,
@@ -122,6 +123,7 @@ namespace SWPApp.Controllers.CustomerClient
                 CustomerAddress = customer.Address
             });
         }
+
 
         //Change password
         [HttpPut("change-password")]
