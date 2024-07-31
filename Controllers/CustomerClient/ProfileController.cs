@@ -112,8 +112,18 @@ namespace SWPApp.Controllers.CustomerClient
 
             await _context.SaveChangesAsync();
 
-            return Ok("Profile updated successfully.");
+            return Ok(new
+            {
+                Message = "Profile updated successfully.",
+                CustomerId = customer.CustomerId,
+                CustomerName = customer.CustomerName,
+                Email = customer.Email,
+                PhoneNumber = customer.PhoneNumber,
+                IDCard = customer.IDCard,
+                Address = customer.Address
+            });
         }
+
         //Change password
         [HttpPut("change-password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordModel model)
