@@ -18,13 +18,41 @@ namespace SWPApp.Controllers.StaffClient
             _context = context;
         }
 
+
+        [HttpGet("history/processing")]
+        public async Task<IActionResult> GetAllProcessingRequests([FromQuery] int? employeeId, [FromQuery] string? serviceId)
+        {
+            // Get all relevant requests with status "Đã nhận kim cương và đang xử lí"
+            var query = _context.Requests
+                .Where(r => r.Status == "Đã nhận kim cương và đang xử lí")
+                .Include(r => r.Customer)
+                .Include(r => r.Employee)
+                .AsQueryable();
+
+            // Apply serviceId filter if specified
+            if (!string.IsNullOrEmpty(serviceId))
+            {
+                query = query.Where(r => r.ServiceId == serviceId);
+            }
+
+            // Apply employeeId filter if specified
+            if (employeeId.HasValue)
+            {
+                query = query.Where(r => r.EmployeeId == employeeId.Value);
+            }
+
+            // Execute query
+            var requests = await query.ToListAsync();
+
+            return Ok(requests);
+        }
+
         [HttpGet("HistoryOfRequest(Staff)")]
         public async Task<IActionResult> GetAllHistoryRequests([FromQuery] int? employeeId, [FromQuery] string? serviceId)
         {
-            // Get all relevant requests
+            // Get all relevant requests except "Đã nhận kim cương và đang xử lí"
             var query = _context.Requests
                 .Where(r => r.Status == "Đã thanh toán" ||
-                            r.Status == "Đã nhận kim cương và đang xử lí" ||
                             r.Status == "Kim cương đã niêm phong")
                 .Include(r => r.Customer)
                 .Include(r => r.Employee)
@@ -47,6 +75,7 @@ namespace SWPApp.Controllers.StaffClient
 
             return Ok(requests);
         }
+
     }
 }
 
