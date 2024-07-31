@@ -117,10 +117,9 @@ namespace SWPApp.Controllers.CustomerClient
                 Message = "Profile updated successfully.",
                 CustomerId = customer.CustomerId,
                 CustomerName = customer.CustomerName,
-                Email = customer.Email,
-                PhoneNumber = customer.PhoneNumber,
-                IDCard = customer.IDCard,
-                Address = customer.Address
+                CustomerPhone = customer.PhoneNumber,
+                CustomerIDCard = customer.IDCard,
+                CustomerAddress = customer.Address
             });
         }
 

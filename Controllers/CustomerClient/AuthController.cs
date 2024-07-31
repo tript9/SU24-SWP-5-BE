@@ -156,6 +156,9 @@ namespace SWPApp.Controllers.CustomerClient
                 CustomerAdress=customer.Address
             });
         }
+
+
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
