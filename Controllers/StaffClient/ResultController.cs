@@ -137,14 +137,43 @@ namespace SWPApp.Controllers
 
             return Ok(new { Message = "Result created successfully. Chờ xác nhận", ResultId = result.ResultId });
         }
-
-        // Get Results by ServiceId action
         [HttpGet("get-by-serviceid/{serviceId}")]
-        public async Task<IActionResult> GetByServiceId(string serviceId)
+        public async Task<IActionResult> GetByServiceId(string serviceId, [FromQuery] int? employeeId = null)
         {
-            var results = await _context.Results
+            IQueryable<Result> query = _context.Results
                 .Include(r => r.Request)
-                .Where(r => r.Request.ServiceId == serviceId)
+                .Where(r => r.Request.ServiceId == serviceId &&
+                            (r.Request.Status == "Yêu cầu bị từ chối" ||
+                             r.Request.Status == "Chờ xác nhận" ||
+                             r.Request.Status == "Kiểm định thành công"));
+
+            if (employeeId.HasValue)
+            {
+                query = query.Where(r => r.Request.EmployeeId == employeeId.Value);
+            }
+
+            var results = await query
+                .Select(r => new
+                {
+                    r.ResultId,
+                    r.DiamondId,
+                    r.RequestId,
+                    DiamondOrigin = r.DiamondOrigin ?? "none",
+                    Shape = r.Shape ?? "none",
+                    Measurements = r.Measurements ?? "none",
+                    CaratWeight = r.CaratWeight ?? 0, // Default to 0 if null
+                    Color = r.Color ?? "none",
+                    Clarity = r.Clarity ?? "none",
+                    Cut = r.Cut ?? "none",
+                    Proportions = r.Proportions ?? "none",
+                    Polish = r.Polish ?? "none",
+                    Symmetry = r.Symmetry ?? "none",
+                    Fluorescence = r.Fluorescence ?? "none",
+                    Certification = r.Certification ?? "none",
+                    Price = r.Price ?? 0, // Default to 0 if null
+                    Comments = r.Comments ?? "none",
+                    RequestStatus = r.Request.Status // Include the status in the response
+                })
                 .ToListAsync();
 
             if (results == null || !results.Any())
@@ -152,29 +181,10 @@ namespace SWPApp.Controllers
                 return NotFound("No results found for the specified ServiceId.");
             }
 
-            var resultDtos = results.Select(result => new ResultDTO
-            {
-                ResultId = result.ResultId,
-                DiamondId = result.DiamondId ?? 0, // Default to 0 if null
-                RequestId = result.RequestId,
-                DiamondOrigin = result.DiamondOrigin ?? "none",
-                Shape = result.Shape ?? "none",
-                Measurements = result.Measurements ?? "none",
-                CaratWeight = result.CaratWeight ?? 0, // Default to 0 if null
-                Color = result.Color ?? "none",
-                Clarity = result.Clarity ?? "none",
-                Cut = result.Cut ?? "none",
-                Proportions = result.Proportions ?? "none",
-                Polish = result.Polish ?? "none",
-                Symmetry = result.Symmetry ?? "none",
-                Fluorescence = result.Fluorescence ?? "none",
-                Certification = result.Certification ?? "none",
-                Price = result.Price ?? 0, // Default to 0 if null
-                Comments = result.Comments ?? "none"
-            }).ToList();
-
-            return Ok(resultDtos);
+            return Ok(results);
         }
+
+
 
         // Delete Result by RequestId action
         [HttpDelete("delete/{requestId}")]
