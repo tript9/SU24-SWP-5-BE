@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SWPApp.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SWPApp.Controllers
 {
@@ -15,6 +16,14 @@ namespace SWPApp.Controllers
         public ServicesController(DiamondAssesmentSystemDBContext context)
         {
             _context = context;
+        }
+
+        public class UpdateServiceModel
+        {
+            public string ServiceType { get; set; }
+            public string Description { get; set; }
+            public int ServicePrice { get; set; }
+            public int Duration { get; set; }
         }
 
         // GET: api/Services
@@ -59,19 +68,25 @@ namespace SWPApp.Controllers
             return Ok(result);
         }
 
+       
         // PUT: api/Services/5
         [HttpPut("{id}")]
-        public IActionResult PutService(string id, Service updatedService)
+        public async Task<IActionResult> PutService(string id, [FromBody] UpdateServiceModel updatedService)
         {
             if (updatedService == null)
             {
                 return BadRequest(new { message = "Service data is required." });
             }
 
-            var existingService = _context.Services.Find(id);
+            var existingService = await _context.Services.Include(s => s.Employees).FirstOrDefaultAsync(s => s.ServiceId == id);
             if (existingService == null)
             {
                 return NotFound(new { message = $"Service with ID {id} not found." });
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
             }
 
             // Update fields only if they are not "string", null or empty for strings, not 0 for integers
@@ -89,22 +104,17 @@ namespace SWPApp.Controllers
             {
                 existingService.ServicePrice = updatedService.ServicePrice;
             }
-            else{
-                existingService.ServicePrice = 0-updatedService.ServicePrice;
-            }
+
             if (updatedService.Duration != 0)
             {
                 existingService.Duration = updatedService.Duration;
             }
-            else
-            {
-                existingService.Duration = 0-updatedService.Duration;
-            }
+
             _context.Entry(existingService).State = EntityState.Modified;
 
             try
             {
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -120,7 +130,6 @@ namespace SWPApp.Controllers
 
             var result = new
             {
-                existingService.ServiceId,
                 existingService.ServiceType,
                 existingService.Description,
                 existingService.ServicePrice,
@@ -130,9 +139,10 @@ namespace SWPApp.Controllers
             return Ok(result);
         }
 
+
         // POST: api/Services
         [HttpPost]
-        public ActionResult<Service> PostService(Service service)
+        public async Task<ActionResult<Service>> PostService([FromBody] Service service)
         {
             if (service == null)
             {
@@ -140,23 +150,23 @@ namespace SWPApp.Controllers
             }
 
             _context.Services.Add(service);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetService", new { id = service.ServiceId }, service);
         }
 
         // DELETE: api/Services/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteService(string id)
+        public async Task<IActionResult> DeleteService(string id)
         {
-            var service = _context.Services.Find(id);
+            var service = await _context.Services.FindAsync(id);
             if (service == null)
             {
                 return NotFound(new { message = $"Service with ID {id} not found." });
             }
 
             _context.Services.Remove(service);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }

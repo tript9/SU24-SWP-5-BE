@@ -33,30 +33,31 @@ namespace SWPApp.Controllers.AdminClient
             public string Phone { get; set; }
         }
 
-        //// Create Employee
-        //[HttpPost("create-employee")]
-        //public async Task<IActionResult> CreateEmployee([FromBody] EmployeeDTO employeeDto)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        // Create Employee
+        [HttpPost("create-employee")]
+        public async Task<IActionResult> CreateEmployee([FromBody] EmployeeDTO employeeDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    var employee = new Employee
-        //    {
-        //        EmployeeName = employeeDto.EmployeeName,
-        //        Email = employeeDto.Email,
-        //        Password = employeeDto.Password, // No hashing
-        //        Phone = employeeDto.Phone
-        //    };
+            var employee = new Employee
+            {
+                EmployeeName = employeeDto.EmployeeName,
+                Email = employeeDto.Email,
+                Password = employeeDto.Password, // No hashing
+                ServiceId=employeeDto.ServiceId,
+                Phone = employeeDto.Phone
+            };
 
-        //    _context.Employees.Add(employee);
-        //    await _context.SaveChangesAsync();
+            _context.Employees.Add(employee);
+            await _context.SaveChangesAsync();
 
-        //    return Ok(employee);
-        //}
+            return Ok(employee);
+        }
 
-      
+
         // Get Employee by ID
         [HttpGet("employee/{employeeid}")]
         public async Task<IActionResult> GetEmployee(int employeeid)
