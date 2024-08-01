@@ -43,7 +43,7 @@ namespace SWPApp.Controllers.StaffClient
             var query = _context.Requests
                 .Include(r => r.Customer)
                 .Include(r => r.Employee)
-                .Where(r => r.Status == "Đã nhận kim cương và đang xử lí" || r.Status == "Kiểm định thành công")
+                .Where(r => r.Status == "Đã nhận kim cương và đang xử lí" || r.Status == "Kiểm định thành công" || r.Status== "Yêu cầu bị từ chối")
                 .AsQueryable();
 
             // Join with Employee to filter where ServiceId in Request matches ServiceId in Employee
